@@ -1,22 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/convertUI/convert_UI_to_PY_QT5.uI'
+# Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/convertUI/convert_UI_to_PY_QT5.ui'
 #
-# Created: Tue Feb 28 22:40:45 2017
+# Created: Wed Mar 01 23:46:10 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PySide2 import QtCore, QtGui, QtWidgets
-import maya.cmds as cmds
-import pymel.core as pm
-import os
-
-global ui
-from PySide2 import QtCore, QtGui, QtWidgets
-from pyside2uic import compileUi
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -112,77 +103,16 @@ class Ui_MainWindow(object):
 
 
 
-
 class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
    
     def __init__(self, parent= QtWidgets.QApplication.activeWindow()):
         super(mod_MainWindow, self).__init__(parent)
         #self.QTITEM.ACTION.connect(self.MODDEF)
-    #def self.MODDEF(self):
-        
-        
-        # self.setWindowFlags(QtCore.Qt.Tool)
         self.setupUi(self)
-        #self.pushButton.clicked.connect(self.buttonPushCommand(happy=2))
-        self.pushButton_01.clicked.connect(self.modpushButton_01)
-        self.pushButton_02.clicked.connect(self.modpushButton_02)
-        self.pushButton_03.clicked.connect(self.modpushButton_03)
+    #def self.MODDEF(self):
 
-        self.lineEdit.textChanged.connect(self.modlineEdit)
-        
-        
-        
-        
-    def modpushButton_01(self):
-        
-        self.uiFileLongName = cmds.fileDialog2(fm=1)[0]
-        print self.uiFileLongName
-        
-        self.pushButton_01.setText(self.uiFileLongName)
-        self.workPath = os.path.split(self.uiFileLongName)[0]
-        self.UiFileName = os.path.split(self.uiFileLongName)[1].split('.')[0]+'.py'
 
-        
-        #newUiToPyName = self.uiFile.split('/')[-1].split('.')[0]+'.py'
-        self.lineEdit.setText(self.UiFileName)
-        
-        
-    def modpushButton_02(self):
-        
-        dialog1 = cmds.loadUI(f=self.uiFileLongName)
-        cmds.showWindow(dialog1)
 
-        print"test UI,%s"%self.uiFileLongName
-  
-    def modpushButton_03(self):
-        self.modlineEdit()
-        
-        
-
-        
-        pyfile = open(self.uiToPyFileLongName, 'w')
-        #pyfileTemp = open(self.uiToPyFileLongName+'.temp','w')
-        compileUi(self.uiFileLongName, pyfile, False, 4,False)
-        defActionConnectText="\n\n\nclass mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):\n   \n    def __init__(self, parent= QtWidgets.QApplication.activeWindow()):\n        super(mod_MainWindow, self).__init__(parent)\n        #self.QTITEM.ACTION.connect(self.MODDEF)\n        self.setupUi(self)\n    #def self.MODDEF(self):\n\n\n\n"
-        defMainText="def main():\n    global ui\n    app = QtWidgets.QApplication.instance()\n    if app == None: app = QtWidgets.QApplication(sys.argv)\n    try:\n        ui.close()\n        ui.deleteLater()\n    except: pass\n    ui = mod_MainWindow()\n    ui.show()\n \nif __name__ == '__main__':\n    main()\n\n\n "           
-                                   
-        #pyfileTemp.write(titleText)
-        pyfile.write(defActionConnectText)
-        
-        pyfile.write(defMainText)
-        #pyfileTemp.close()
-        
-        pyfile.close()
-        
-        print"convert %s to file %s"%(self.uiFileLongName,self.uiToPyFileLongName)
-        
-    def modlineEdit(self):
-        self.UiFileName = self.lineEdit.text()
-        self.uiToPyFileLongName = self.workPath + '/'+self.UiFileName
-        print self.UiFileName
-        print self.uiToPyFileLongName
-        
-        
 def main():
     global ui
     app = QtWidgets.QApplication.instance()
@@ -195,5 +125,7 @@ def main():
     ui.show()
  
 if __name__ == '__main__':
-    main() 
-    
+    main()
+
+
+ 
