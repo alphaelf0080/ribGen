@@ -2513,10 +2513,8 @@ class mod_MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             
             try:
               #  print pm.getAttr("%s.cacheFileName"%gpuNode)
-                pm.setAttr("%s.cacheFileName"%gpuNode,"")
-
                
-               #pm.setAttr("%s.cacheFileName"%gpuNode,"//mcd-server/art_3d_project/global/assets/other/gpuCacheTemp/dog.abc")
+                pm.setAttr("%s.cacheFileName"%gpuNode,"")
             except:
                 pass
             
@@ -2746,8 +2744,8 @@ class mod_MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         
         
 
-#def main():
-def rib_genMain():
+def main():
+#def rib_genMain():
     global ui
     app = QtGui.QApplication.instance()
     if app == None: app = QApplication(sys.argv)
@@ -2758,5 +2756,5 @@ def rib_genMain():
     ui = mod_MainWindow()
     ui.show()
  
-#if __name__ == '__main__':
-#    main() 
+if __name__ == '__main__':
+    main() 
