@@ -10,6 +10,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 import os
 import maya.cmds as cmds
 import pymel.core as pm
+import json
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
@@ -371,6 +372,9 @@ class Ui_MainWindow(object):
         self.comboBox_branches.setItemText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
 
 
+
+
+
       
     ##------------------------------------sign---------------------------------------------
     
@@ -380,7 +384,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(mod_MainWindow, self).__init__(parent)
         #self.QTITEM.ACTION.connect(self.MODDEF)
     #def self.MODDEF(self):
-        
+    
+        #------run before start up --------------------------------------
+        self.projectAssembleDefine()
+        self.getProjectDict()
         
         # self.setWindowFlags(QtCore.Qt.Tool)
         self.setupUi(self)
@@ -395,7 +402,23 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.pushButton_getDict.clicked.connect(self.modpushButton_getDict)
 
+        #tree Item Select
+        #topLevelItem
+        self.listWidget_assetProj.itemClicked.connect(self.modlistWidget_assetProj)
+        #self.listWidget_assetProj.itemSelectionChanged.connect(self.modlistWidget_assetProj)
 
+       # self.treeWidget_assetTree.itemClicked.connect(self.modtreeWidget_assetTree)
+
+        
+    def modlistWidget_assetProj(self):
+        self.listWidget_assetProj.itemFromIndex()
+       # print self.listWidget_assetProj.currentIndex()
+        #self.listWidget_assetProj.QListWidgetItem
+        #for i in self.listWidget_assetProj.currentItem():
+       #     print i
+       # print type(self.listWidget_assetProj.currentItem())
+        #indexItem = self.listWidget_assetProj.model.index(index.row(), 0, index.parent())
+       # print indexItem
 
     def popUpwindow(self):
         window = cmds.window(t="input window",h=100,w=400,s=0)
@@ -420,41 +443,103 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         cmds.showWindow( window )
         
+        
     def modpushButton_getDict(self):
+        self.getProjectDict()
+       # print projectDict
+        print self.projectDict
+        self.reNewProjectDictAndExportFile()
+        print self.projectName
+        print self.projectDirFileName
         
-        self.projectDict={}
-        
+    #---------------------------get full project dir path dictionary start ----------------------------------------
+    def getProjectDict(self):
         self.getProjInfo()
-        print self.path
-        print os.listdir(self.path)
-        
-        for item in os.listdir(self.path):
-       #     print item
-       # 
-            self.projectDict.update({item:{}})
-            
-        print self.projectDict
-        
-        
-        self.currentDir = self.path
-        self.currentItemDict = self.projectDict
+        self.projectAssembleDefine()
+        #print self.root
 
-        self.getNextLevelDict(self.currentDir,self.currentItemDict)
-        self.currentItemDict = self.projectDict
+        
+        self.projectDict={"assets":{'characters':{},
+                                    'vehicles':{},
+                                    'sets':{},
+                                    'props':{},
+                                    'others':{},
+                                    },
+                          "shot":{}}
+        #print self.projectDict
+        
+        for assetClassItem in self.assetClass:
+            searchPath = self.root +'/'+'assets'+'/'+ assetClassItem
+          #  print searchPath
+            for item in os.listdir(searchPath):
+                self.projectDict['assets'][assetClassItem].update({item:{}})
+
+               # print item
+               #get all process, concept modeling texture rigging in asset
+                for assetEachProcess in self.assetProcess:
+                    self.projectDict['assets'][assetClassItem][item].update({assetEachProcess:{}})
+                                                                                               
+                    for sourceFileDir in self.workSpaceCompoment:  #get all dir in asset project
+                        self.projectDict['assets'][assetClassItem][item][assetEachProcess].update({sourceFileDir:{}})
+                        #get search path ,all dir in asset project
+                        branchDirSearchPath = self.root + '/' + 'assets' +'/'+ assetClassItem + '/' + item +'/' + assetEachProcess +'/'+sourceFileDir
+                        #get all branch ,files in scenes,data ,cache, sourceimages
+                        try:
+                            for branchDir in os.listdir(branchDirSearchPath):
+                                self.projectDict['assets'][assetClassItem][item][assetEachProcess][sourceFileDir].update({branchDir:{}})
+
+                        except:
+                            pass
+                           # self.projectDict['assets'][assetClassItem][item][assetEachProcess][sourceFileDir].update({branchDir:{}})
+
+                                                                                               
+                    
+                
+        shotsPath = self.root +'/'+'shot'
+       # print shotsPath
+        for singleShot in os.listdir(shotsPath):
+            self.projectDict['shot'].update({singleShot:{}})
+
+            
+            for shotEachProcess in self.shotProcess:
+                self.projectDict['shot'][singleShot].update({shotEachProcess:{}})
+
+                for sourceFileDir in self.workSpaceCompoment:  #get all dir in shot project
+                    self.projectDict['shot'][singleShot][shotEachProcess].update({sourceFileDir:{}})
+                    #get search path ,all dir in shot project
+                    branchDirSearchPath = self.root + '/' + 'shot' +'/'+ singleShot + '/' + shotEachProcess +'/' + sourceFileDir
+                  #  print branchDirSearchPath
+                    #get all branch ,files in scenes,data ,cache, sourceimages
+                    try:
+                        for branchDir in os.listdir(branchDirSearchPath):
+                            self.projectDict['shot'][singleShot][shotEachProcess][sourceFileDir].update({branchDir:{}})
+
+                    except:
+                        pass                
+
+    #---------------------------get full project dir path dictionary start ----------------------------------------
+
+    def reNewProjectDictAndExportFile(self):
+        self.getProjInfo()
+        self.getProjectDict()
+        self.projectDirFileName = self.root +'/'+ 'globals' + '/' + self.projectName + '.info.json'
+        #print self.projectDirFileName
+        #print self.projectDict
+        data = json.dumps(self.projectDict, sort_keys=True , indent =4) 
+        writeGlobalsDirInfoFile = open(self.projectDirFileName,'w')
+        writeGlobalsDirInfoFile.write(data)
+        writeGlobalsDirInfoFile.close
+        
+        
+
        
-        print self.projectDict
-        for secLevelItem in self.projectDict.keys():
-            self.currentDir = self.path + '/' +secLevelItem
-            
-           # print self.currentDir
-            for thirdLevelItem in self.projectDict[secLevelItem]:
-                self.currentDir = self.path + '/' + secLevelItem +'/' + thirdLevelItem
-                print self.currentDir
-
-              #  self.getNextLevelDict(self.currentDir,self.currentItemDict)
-
-               # print self.currentDir
-        print self.projectDict
+    def projectAssembleDefine(self):
+        self.topLevelItem = ['assets','shot','globals','publish']
+        self.assetClass = ['characters','vehicles','sets','props','others']
+        self.assetProcess = ['concept','modeling','texture','rigging']
+        self.shotProcess = ['concept','layout','animation','lighting','effect','simulation','comp']
+        self.workSpaceCompoment =['scenes','data','cache','sourceimages']
+        
 
                 
 
@@ -464,37 +549,37 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #cmds.workspaceLayoutManager( listLayouts=True )
         self.getProjInfo()
         
-        #self.path="C:/mayaProjs/projectPP"
+        #self.root="C:/mayaProjs/projectPP"
         #path = "//mcd-server/art_3d_project/fish_battle_v02_cf"  
         branchesDir ={}
         assetsDict = {}
-        topList = os.listdir(self.path)
+        topList = os.listdir(self.root)
 
-        assetsPath = self.path +'/'+'assets'
-        shotsPath = self.path +'/'+'shot'
+        assetsPath = self.root +'/'+'assets'
+        shotsPath = self.root +'/'+'shot'
 
         assetDirs = os.listdir(assetsPath)
         shotsDirs = os.listdir(shotsPath)
 
         for assetTopLevelKey in assetDirs:
             assetsDict.update({assetTopLevelKey:{}})
-        self.pathCurrent = assetsPath
+        self.rootCurrent = assetsPath
         self.dictCurrentLevel = assetsDict
         
         
-        self.getNextDict(self.pathCurrent,self.dictCurrentLevel)
+        self.getNextDict(self.rootCurrent,self.dictCurrentLevel)
         self.dictCurrentLevel = self.getNextDict
         print self.nextLevelItemDict
         print self.nextLevelItemDict.keys()
 
        # for i in dictCurrentLevel.keys():
        #     for j in self.nextLevelItemDict[i]:
-       #         self.pathCurrent = self.pathCurrent +'/'+ i+'/'+j
+       #         self.rootCurrent = self.rootCurrent +'/'+ i+'/'+j
             
-       #         self.getNextDict(self.pathCurrent,self.dictCurrentLevel)
+       #         self.getNextDict(self.rootCurrent,self.dictCurrentLevel)
         
        # print self.nextLevelItemDict
-        # self.itemCurentLevel is a list, store dir in self.pathCurrent, and self.dictCurrentLevel store currentLevel items in Dictionary
+        # self.itemCurentLevel is a list, store dir in self.rootCurrent, and self.dictCurrentLevel store currentLevel items in Dictionary
         
         
         
@@ -595,16 +680,18 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
     def modpushButton_assets(self):
         print "get info from asset dir"
-
-        self.getProjInfo()
-
-        self.dirGive = 'assets'   # set self.dirGive ,in self.treeList module
-        self.treeList(self.dirGive)  
-        print self.topLevelItem    #return keys,topLevelItems under Projects
-
-        self.itemCount = self.topLevelItemCount
-        self.itemList = self.topLevelItem
-        #print self.itemCount, self.itemList
+        tempItemList = []
+        for singalAssetClass in self.assetClass:
+           # print singalAssetClass
+            for asset in self.projectDict['assets'][singalAssetClass].keys():
+                tempItemList.append(asset)
+        self.itemList = sorted(tempItemList)
+        print tempItemList
+        print self.itemList
+        #print self.itemList
+        self.itemCount = len(self.itemList)    
+        print self.itemCount
+       # print self.itemList
         
         self.assetItemListCreate(self.itemCount,self.itemList)  #create topLevelItem form self.TreeTopLeveItemCreate module, self.itemCount 'int',self.itemList = 'list'
         
@@ -613,20 +700,18 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def modpushButton_shots(self):
         print "get info from shot dir"
 
-        self.getProjInfo()
+        tempItemList = []
+        for asset in self.projectDict['shot'].keys():
+            tempItemList.append(asset)
+        self.itemList = sorted(tempItemList)
+        print tempItemList
+        print self.itemList
+        #print self.itemList
+        self.itemCount = len(self.itemList)    
+        print self.itemCount
+       # print self.itemList
         
-        self.dirGive = 'shots'
-        self.treeList(self.dirGive)  
-        
-        self.itemCount = self.topLevelItemCount
-        self.itemList = self.topLevelItem
-        print self.topLevelItem    #return keys,topLevelItems under Projects
-
-        #print self.itemCount, self.itemList
-        
-        self.assetItemListCreate(self.itemCount,self.itemList) 
-        
-        
+        self.assetItemListCreate(self.itemCount,self.itemList)  
 
     #------------------------- create TopLevelItem Start -------------------------------------------------------------------------
     def TreeTopLeveItemCreate(self,itemCount,itemList):
@@ -693,31 +778,34 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     #-------------------get current project--------------------------------------------------------
         
     def getProjInfo(self):
-        self.path="C:/mayaProjs/projectPP"
+        self.projectName = "projectPP"
+        self.root="C:/mayaProjs/" + self.projectName
         
         
-       # self.path = cmds.fileDialog2(fm=2)[0]
-       # self.path = "//mcd-server/art_3d_project/fish_battle_v02_cf"  
+        
+        
+       # self.root = cmds.fileDialog2(fm=2)[0]
+       # self.root = "//mcd-server/art_3d_project/fish_battle_v02_cf"  
 
-        print self.path
+       # print self.root
         
     def getFileInfor(self):
 
-        self.dirObjs = os.listdir(self.path)
+        self.dirObjs = os.listdir(self.root)
         self.ObjsCount = len(self.dirObjs)
         #collect files that as the file filter
         self.isDirList = []
         self.isFileList = []
         self.fileFilter = ['.ma','.mb','.rib','.abc']
         for obj in self.dirObjs:
-            pathObj = self.path + '/'+u'%s'%obj
+            pathObj = self.root + '/'+u'%s'%obj
             print pathObj
             if os.path.splitext(pathObj)[1] in self.fileFilter:                 
                 self.isFileList.append(obj)
             elif os.path.splitext(pathObj)[1] == "":
                 self.isDirList.append(obj)
                 
-        print self.path
+        print self.root
         print self.dirObjs
         print self.ObjsCount
         print "isDirList:    ", self.isDirList
@@ -728,18 +816,18 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def treeListB(self,dirGive):
         #this module, will return dirTree, self.treeInfoDict,
-        #self.path = "C:/mayaProjs/vdbDevelop"
+        #self.root = "C:/mayaProjs/vdbDevelop"
 
         #--------------------get dirTree info from workspace Start-------------------------------------------
         self.rootList = []
         self.allFileNameList = []
         self.treeInfoDict ={}
-        pathTextList = self.path.split('/')
+        pathTextList = self.root.split('/')
         levelCount = len(pathTextList)   # get the depth  of root, search in self.treeInfoDict
             
-        for root, dirs, files in os.walk(self.path):
+        for root, dirs, files in os.walk(self.root):
 
-            rootRemix = self.path+'/'.join(root.split(self.path)[-1].split('\\'))
+            rootRemix = self.root+'/'.join(root.split(self.root)[-1].split('\\'))
         #    print rootRemix
             ## find all files 
             for singleFileName in files:
@@ -798,10 +886,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         path = "//mcd-server/art_3d_project/fish_battle_v02_cf"  
         branchesDir ={}
         assetsDict = {}
-        topList = os.listdir(path)
+        topList = os.listdir(self.root)
 
-        assetsPath = path +'/'+'assets'
-        shotsPath = path +'/'+'shot'
+        assetsPath = self.root +'/'+'assets'
+        shotsPath = self.root +'/'+'shot'
 
         assetDirs = os.listdir(assetsPath)
         shotsDirs = os.listdir(shotsPath)
@@ -826,27 +914,14 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     
     def getNextDict(self,pathCurrent,dictCurrentLevel):
         
-        # self.itemCurentLevel is a list, store dir in self.pathCurrent, and self.dictCurrentLevel store currentLevel items in Dictionary
+        # self.itemCurentLevel is a list, store dir in self.rootCurrent, and self.dictCurrentLevel store currentLevel items in Dictionary
         for currentItem in self.dictCurrentLevel.keys():
-            currentItemPath = self.pathCurrent +'/'+ currentItem
+            currentItemPath = self.rootCurrent +'/'+ currentItem
             for nextLevelItem in os.listdir(currentItemPath):
                 self.dictCurrentLevel[currentItem].update({nextLevelItem:{}})
                 
         self.nextLevelItemDict = self.dictCurrentLevel
-        
-    def getNextLevelDict(self,currentDir,currentItemDict): #get dir from self.currentDir, get dictionary,currently form self.currentItemDict,det currentItemDepth fomr self.dirDepth
 
-        print self.currentDir
-        print self.currentItemDict   
-      #  print self.dirDepth    
-        for item in os.listdir(self.currentDir):
-            searchPath = self.currentDir +'/' +item
-            for nextLevelItem in os.listdir(searchPath):
-             #   print nextLevelItem
-                self.projectDict[item].update({nextLevelItem:{}})
-               # self.projectDict.update({item:{nextLevelItem:{str(dirDepth+1):{}}}})
-                
-        
                 
         
                 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/publishTool/publishToolPreVer_02_UI.ui'
 #
-# Created: Tue Mar 07 23:00:20 2017
+# Created: Fri Mar 10 21:47:30 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -292,6 +292,25 @@ class Ui_MainWindow(object):
         self.verticalSlider.setGeometry(QtCore.QRect(400, 59, 20, 661))
         self.verticalSlider.setOrientation(QtCore.Qt.Vertical)
         self.verticalSlider.setObjectName("verticalSlider")
+        self.pushButton_getDict = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_getDict.setGeometry(QtCore.QRect(600, 60, 30, 30))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(172, 224, 239))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(172, 224, 239))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(172, 224, 239))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        self.pushButton_getDict.setPalette(palette)
+        self.pushButton_getDict.setText("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("icons/application-view-tree-128.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_getDict.setIcon(icon3)
+        self.pushButton_getDict.setIconSize(QtCore.QSize(20, 20))
+        self.pushButton_getDict.setObjectName("pushButton_getDict")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1141, 18))
