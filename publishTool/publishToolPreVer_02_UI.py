@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/publishTool/publishToolPreVer_02_UI.ui'
 #
-# Created: Fri Mar 10 21:47:30 2017
+# Created: Mon Mar 13 22:12:19 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -311,6 +311,21 @@ class Ui_MainWindow(object):
         self.pushButton_getDict.setIcon(icon3)
         self.pushButton_getDict.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_getDict.setObjectName("pushButton_getDict")
+        self.pushButton_test_A = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_test_A.setGeometry(QtCore.QRect(20, 320, 131, 51))
+        self.pushButton_test_A.setObjectName("pushButton_test_A")
+        self.pushButton_test_B = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_test_B.setGeometry(QtCore.QRect(20, 390, 131, 51))
+        self.pushButton_test_B.setObjectName("pushButton_test_B")
+        self.pushButton_test_C = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_test_C.setGeometry(QtCore.QRect(20, 460, 131, 51))
+        self.pushButton_test_C.setObjectName("pushButton_test_C")
+        self.pushButton_test_D = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_test_D.setGeometry(QtCore.QRect(20, 530, 131, 51))
+        self.pushButton_test_D.setObjectName("pushButton_test_D")
+        self.pushButton_test_E = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_test_E.setGeometry(QtCore.QRect(20, 600, 131, 51))
+        self.pushButton_test_E.setObjectName("pushButton_test_E")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1141, 18))
@@ -365,6 +380,11 @@ class Ui_MainWindow(object):
         self.treeWidget_assetTree.topLevelItem(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_02", None, -1))
         self.treeWidget_assetTree.setSortingEnabled(__sortingEnabled)
         self.comboBox_branches.setItemText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
+        self.pushButton_test_A.setText(QtWidgets.QApplication.translate("MainWindow", "test_A", None, -1))
+        self.pushButton_test_B.setText(QtWidgets.QApplication.translate("MainWindow", "test_B", None, -1))
+        self.pushButton_test_C.setText(QtWidgets.QApplication.translate("MainWindow", "test_C", None, -1))
+        self.pushButton_test_D.setText(QtWidgets.QApplication.translate("MainWindow", "test_D", None, -1))
+        self.pushButton_test_E.setText(QtWidgets.QApplication.translate("MainWindow", "test_E", None, -1))
 
 
 

@@ -979,6 +979,71 @@
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_test_A">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test_A</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_test_B">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test_B</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_test_C">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>460</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test_C</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_test_D">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>530</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test_D</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_test_E">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>600</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test_E</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
