@@ -510,8 +510,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # self.setWindowFlags(QtCore.Qt.Tool)
         self.setupUi(self)
-        self.setFontSelected()
-        self.setFontUnSelected()
+        self.resetProcessButton()
 
     ##------------------------------------signal   ---------------------------------------------        
         self.processLevel = "model"   #default asset select is model
@@ -547,7 +546,6 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
                 
         
-        
         self.pushButton_processLayout.clicked.connect(self.modpushButton_processLayout)
         self.pushButton_processAnimation.clicked.connect(self.modpushButton_processAnimation)
         self.pushButton_processLighting.clicked.connect(self.modpushButton_processLighting)
@@ -559,16 +557,15 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.listWidget_assetProj.itemClicked.connect(self.modlistWidget_assetProj)
     
-    
     #--------------------button slot , from  process Button Sign-------------Start-------------
     def modpushButton_processLayout(self):
         self.resetProcessButton()
         
         
         self.processLevel = "layout"
-       # self.pushButton_processLayout.setCheckable(True)
-       # self.pushButton_processLayout.setChecked(True)
-        self.pushButton_processLayout.setFont(self.fontSel)
+        self.pushButton_processLayout.setCheckable(True)
+        self.pushButton_processLayout.setChecked(True)
+        #self.pushButton_processLayout.setFont(self.fontSel)
         self.pushButton_processLayout.setPalette(self.paletteSel)      
         
 
@@ -577,9 +574,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetProcessButton()
         
         self.processLevel = "animation"
-       # self.pushButton_processAnimation.setCheckable(True)
-        #self.pushButton_processAnimation.setChecked(True)
-        self.pushButton_processAnimation.setFont(self.fontSel)
+        self.pushButton_processAnimation.setCheckable(True)
+        self.pushButton_processAnimation.setChecked(True)
+       # self.pushButton_processAnimation.setFont(self.fontSel)
         self.pushButton_processAnimation.setPalette(self.paletteSel)      
         
         
@@ -588,9 +585,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetProcessButton()
         
         self.processLevel = "lighting"
-       # self.pushButton_processLighting.setCheckable(True)
-       # self.pushButton_processLighting.setChecked(True)
-        self.pushButton_processLighting.setFont(self.fontSel)
+        self.pushButton_processLighting.setCheckable(True)
+        self.pushButton_processLighting.setChecked(True)
+       # self.pushButton_processLighting.setFont(self.fontSel)
         self.pushButton_processLighting.setPalette(self.paletteSel)      
         
 
@@ -600,10 +597,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetProcessButton()
         self.processLevel = "effects"
 
-       # self.pushButton_processEffects.setCheckable(True)
-       # self.pushButton_processEffects.setChecked(True)
+        self.pushButton_processEffects.setCheckable(True)
+        self.pushButton_processEffects.setChecked(True)
         
-        self.pushButton_processEffects.setFont(self.fontSel)
+       # self.pushButton_processEffects.setFont(self.fontSel)
         self.pushButton_processEffects.setPalette(self.paletteSel)      
                 
         
@@ -614,9 +611,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetProcessButton()
         
         self.processLevel = "simulation"
-       # self.pushButton_processSimulation.setCheckable(True)
-       # self.pushButton_processSimulation.setChecked(True)        
-        self.pushButton_processSimulation.setFont(self.fontSel)
+        self.pushButton_processSimulation.setCheckable(True)
+        self.pushButton_processSimulation.setChecked(True)        
+       # self.pushButton_processSimulation.setFont(self.fontSel)
         self.pushButton_processSimulation.setPalette(self.paletteSel)      
         
         
@@ -632,9 +629,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.processLevel = "model"
         
-       # self.pushButton_processModel.setCheckable(True)
-       # self.pushButton_processModel.setChecked(True)
-        self.pushButton_processModel.setFont(self.fontSel)
+        self.pushButton_processModel.setCheckable(True)
+        self.pushButton_processModel.setChecked(True)
+      #  self.pushButton_processModel.setFont(self.fontSel)
         self.pushButton_processModel.setPalette(self.paletteSel)      
 
 
@@ -643,11 +640,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetProcessButton()
        
         self.processLevel = "texture"
-       # self.pushButton_processTexture.setCheckable(True)
-        #self.pushButton_processTexture.setChecked(True)
+        self.pushButton_processTexture.setCheckable(True)
+        self.pushButton_processTexture.setChecked(True)
 
-       # self.pushButton_processTexture.setFont(self.fontSel)
-        #self.pushButton_processTexture.setPalette(self.paletteSel)      
+      #  self.pushButton_processTexture.setFont(self.fontSel)
+        self.pushButton_processTexture.setPalette(self.paletteSel)      
 
 
 
@@ -656,10 +653,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetProcessButton()
         
         self.processLevel = "rigging"
-        #self.pushButton_processRigging.setCheckable(True)
-        #self.pushButton_processRigging.setChecked(True)
+        self.pushButton_processRigging.setCheckable(True)
+        self.pushButton_processRigging.setChecked(True)
 
-        self.pushButton_processRigging.setFont(self.fontSel)
+       # self.pushButton_processRigging.setFont(self.fontSel)
         self.pushButton_processRigging.setPalette(self.paletteSel)      
         
 
@@ -675,8 +672,51 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def resetProcessButton(self):
         print "reset process Button Switch"
         
-        self.setFontUnSelected()
-        self.setFontSelected()
+       # self.fontSel = QtGui.QFont()
+        #self.fontSel.setFamily("Adobe Gothic Std B")
+       # self.fontSel.setPointSize(12)
+       # self.fontSel.setWeight(75)
+       # self.fontSel.setBold(True)
+        #self.pushButton_test_E.setFont(self.fontSel)
+                                       
+        self.paletteSel = QtGui.QPalette()
+        self.brushSel = QtGui.QBrush(QtGui.QColor(255, 0, 4))
+        self.brushSel.setStyle(QtCore.Qt.SolidPattern)
+        self.paletteSel.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, self.brushSel)
+        self.brushSel = QtGui.QBrush(QtGui.QColor(0, 255, 0))
+        self.brushSel.setStyle(QtCore.Qt.SolidPattern)
+        self.paletteSel.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, self.brushSel)
+        self.brushSel = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        self.brushSel.setStyle(QtCore.Qt.SolidPattern)
+        self.paletteSel.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, self.brushSel)
+        #self.pushButton_test_E.setPalette(self.paletteSel)                                       
+                                       
+        
+        
+        
+        
+        #self.fontUnSel = QtGui.QFont()
+        #self.fontUnSel.setFamily("Adobe Gothic Std B")
+       # self.fontUnSel.setPointSize(12)
+       # self.fontUnSel.setWeight(75)
+       # self.fontUnSel.setBold(False)
+        #self.pushButton_test_E.setFont(self.fontUnSel)
+                                       
+        self.paletteUnSel = QtGui.QPalette()
+        self.brushUnSel = QtGui.QBrush(QtGui.QColor(100, 100, 100))
+        self.brushUnSel.setStyle(QtCore.Qt.SolidPattern)
+        self.paletteUnSel.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, self.brushUnSel)
+        self.brushUnSel = QtGui.QBrush(QtGui.QColor(0, 255, 0))
+        self.brushUnSel.setStyle(QtCore.Qt.SolidPattern)
+        self.paletteUnSel.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, self.brushUnSel)
+        self.brushUnSel = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        self.brushUnSel.setStyle(QtCore.Qt.SolidPattern)
+        self.paletteUnSel.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, self.brushUnSel)
+        
+        
+        
+       # self.setFontUnSelected()
+       # self.setFontSelected()
 
         self.pushButton_processModel.setCheckable(False)
         self.pushButton_processModel.setChecked(False)
@@ -707,31 +747,31 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
         
-        self.pushButton_processModel.setFont(self.fontUnSel)
+       # self.pushButton_processModel.setFont(self.fontUnSel)
         self.pushButton_processModel.setPalette(self.paletteUnSel)                
         
-        self.pushButton_processTexture.setFont(self.fontUnSel)
+       # self.pushButton_processTexture.setFont(self.fontUnSel)
         self.pushButton_processTexture.setPalette(self.paletteUnSel)                
 
-        self.pushButton_processRiggingsetFont(self.fontUnSel)
+       # self.pushButton_processRiggingsetFont(self.fontUnSel)
         self.pushButton_processRigging.setPalette(self.paletteUnSel)                
 
-        self.pushButton_processLayout.setFont(self.fontUnSel)
+       # self.pushButton_processLayout.setFont(self.fontUnSel)
         self.pushButton_processLayout.setPalette(self.paletteUnSel)                
 
-        self.pushButton_processAnimation.setFont(self.fontUnSel)
+       # self.pushButton_processAnimation.setFont(self.fontUnSel)
         self.pushButton_processAnimation.setPalette(self.paletteUnSel)                
 
-        self.pushButton_processLighting.setFont(self.fontUnSel)
+      #  self.pushButton_processLighting.setFont(self.fontUnSel)
         self.pushButton_processLighting.setPalette(self.paletteUnSel)                
 
-        self.pushButton_processEffects.setFont(self.fontUnSel)
+        #self.pushButton_processEffects.setFont(self.fontUnSel)
         self.pushButton_processEffects.setPalette(self.paletteUnSel)                
 
-        self.pushButton_processSimulation.setFont(self.fontUnSel)
+       # self.pushButton_processSimulation.setFont(self.fontUnSel)
         self.pushButton_processSimulation.setPalette(self.paletteUnSel)                
         
-        self.pushButton_processComp.setFont(self.fontUnSel)
+      #  self.pushButton_processComp.setFont(self.fontUnSel)
         self.pushButton_processComp.setPalette(self.paletteUnSel)                
         
 
@@ -782,6 +822,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.brushUnSel = QtGui.QBrush(QtGui.QColor(0, 0, 255))
         self.brushUnSel.setStyle(QtCore.Qt.SolidPattern)
         self.paletteUnSel.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, self.brushUnSel)
+        
+        
+        
+    def fontSet(self):
         #self.pushButton_test_E.setPalette(self.paletteUnSel)      
         self.pushButton_processModel.setFont(self.fontUnSel)
         self.pushButton_processModel.setPalette(self.paletteUnSel)                
@@ -1278,7 +1322,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print self.itemCount
         self.selectedKey = "assets"
        # print self.itemList
-        self.setFontUnSelected()
+        self.resetProcessButton()
         self.assetItemListCreate(self.itemCount,self.itemList)  #create topLevelItem form self.treeTopLeveItemCreate module, self.itemCount 'int',self.itemList = 'list'
         
         
@@ -1314,6 +1358,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print self.itemCount
        # print self.itemList
         self.selectedKey = "shot"
+        self.resetProcessButton()
 
         self.assetItemListCreate(self.itemCount,self.itemList)  
 
