@@ -2462,21 +2462,29 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
     def modpushButton_master(self):  
         
+        self.branch = 'master'
+        self.getBranchItems(self.branch)
         
-        self.itemList =['a','b','c','d','e']
+
+                                 
+                             
+    def modpushButton_masterB(self):                                
+        print self.itemList 
+
           
         self.treeTopLeveItemCreate(self.itemList)   
    
    
    
     #------------------------- create TopLevelItem Start -------------------------------------------------------------------------
-    def treeTopLeveItemCreate(self,itemList):
+    def treeTopLeveItemCreateB(self,itemList):
         
         
-        
+        print self.itemList
         
         #self.projectDict[]
         
+    def treeTopLeveItemCreate(self,itemList):
         
 
         print "cccc"
@@ -2485,6 +2493,53 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.itemCount = len(self.itemList)
         print self.itemCount
         print self.itemList
+        
+    def getBranchesTopLevel(self):
+        
+        self.testDict = {
+                        'master':{
+                                  'anna_model_master_v01_alpha.mb':{},
+                                  'anna_model_master_v02_alpha.mb':{},
+                                  'anna_model_master_v03_alpha.mb':{},
+                                  'anna_model_master_v04_alpha.mb':{}
+                                  },
+                        'branch_01':{
+                                     'anna_model_branch_01_v05_alpha.mb':{},
+                                     'anna_model_branch_01_v06_alpha.mb':{},
+                                     'anna_model_branch_01_v07_alpha.mb':{}
+                                     },
+                        'branch_02':{
+                                     'anna_model_branch_02_v08_alpha.mb':{},
+                                     'anna_model_branch_02_v09_alpha.mb':{},
+                                     'anna_model_branch_02_v10_alpha.mb':{}
+                                     },
+                        'temp_01':{
+                                   'anna_model_temp_01_v11_alpha.mb':{},
+                                   'anna_model_temp_01_v12_alpha.mb':{},
+                                   'anna_model_temp_01_v13_alpha.mb':{}
+                                   },
+                        'extra_01':{
+                                    'anna_model_extra_01_v14_alpha.mb':{},
+                                    'anna_model_extra_01_v15_alpha.mb':{},
+                                    'anna_model_extra_01_v16_alpha.mb':{}
+                                    }
+                        }
+                            
+        self.level_0_items =  testDict.keys()    
+        
+        print self.level_0_items 
+        
+    def getBranchItems(self,branch):
+        
+        self.getBranchesTopLevel()
+        
+        print self.testDict
+        print self.testDict[self.branch]
+        
+        
+        
+    def temp(self):
+        
         num_item_0 =1
         while num_item_0 < (self.itemCount +1):
             item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_assetTree)
@@ -2735,11 +2790,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #define project Name
         #self.topLevelItem
         #self.projectName = "fish_battle_v02_cf"
-        self.projectName = "fish_battle_v02_cf"
+        self.projectName = "projectPP"
 
         #define project topLevelDir
         #self.root="//mcd-server/art_3d_project/" + self.projectName     ## it should be //projects_location/   ,add '/' after end
-        self.root="//mcd-3d/art_3d_project/" + self.projectName     ## it should be //projects_location/   ,add '/' after end
+        self.root="C:/mayaProjs/" + self.projectName     ## it should be //projects_location/   ,add '/' after end
         
         self.topLevelItem = ['assets','shot','global','publish','QC','reference','output']
         basePathList = []
