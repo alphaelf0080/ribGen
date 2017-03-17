@@ -1961,12 +1961,12 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_processRigging.setFont(self.fontSel)
         self.pushButton_processRigging.setPalette(self.paletteSel)  
         
-        self.itemListReq()
-        
         self.isAsset = "1"
 
         self.itemListReq(self.isAsset)
-       # self.modlistWidget_assetProj(self.processLevel,self.isAsset)  
+       
+       
+       
 
     def modpushButton_processComp(self):
         
@@ -2180,91 +2180,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #print "assetSelect", self.assetSelect
        # print self.isAsset
         
-    def itemListReq(self,isAsset):
-        
-        if self.isAsset == "1":
-            self.itemList = self.projectDict['assets'][self.classKey][self.assetSelect][self.processLevel]['scenes'].keys()
-            print self.itemList
-            
-        else:
-            print "bbbbbbbbbbbbbb"
-            print self.projectDict
-            print self.assetSelect
-            print self.processLevel
-            self.itemList = self.projectDict['shot'][self.assetSelect][self.processLevel]['scenes'].keys()
-            print self.projectDict['shot'][self.assetSelect]
-            print self.itemList
-        
-        
-        
-            
-    def shotItemListReq(self):
-        print"aaaaa"
-        #print self.assetSelect
-        print self.processLevel
-       #print 
-        #sself.itemList = self.projectDict['shot'][self.assetSelect][self.processLevel]['scenes'].keys()
-        #print self.itemList
-        
-        
-        
-        
-    def yyy(self):
-        if self.isAsset == "1":
-            self.classKey = self.assetsDict[self.assetSelect]
-            print "classKey", self.classKey
 
-            try:
-                self.itemList = self.projectDict['assets'][self.classKey][self.assetSelect][self.processLevel]['scenes'].keys()
-                print "aaaaaa111111111"
-            except:
-                print "Do Not Have this processaaaaaaaaaaaaaaaaaaa2222222222222"
-                
-            #print self.itemList
-
-            
-        elif self.isAsset == "0":
-            try:
-                self.itemList = self.projectDict['shot'][self.assetSelect][self.processLevel]['scenes'].keys()
-              #  print self.itemList
-                print "bbbbbbbbbbbbbbb222222222222"
-            except:
-                print "Do Not Have this process"
-                print "ccccccccccccccc3333333333333"
-
-        else:
-            print"Please Check the File"
-            
-        print self.itemList
-
-            
-          #  pass
-          #  
-       # print branchTreeDict[self.processLevel]['scenes']
-
-       # self.treeTopLeveItemCreate(self.itemList)
-       # print self.projectDict[self.assetSelect]
-    def modlistWidget_assetProjB(self,processLevel):
-
-        print "processLevel",self.processLevel
-
-        item = self.listWidget_assetProj.currentItem()
-        self.assetSelect = item.text()
-        print "assetSelect", self.assetSelect
-
-        self.classKey = self.assetsDict[self.assetSelect]
-        print "classKey", self.classKey
-
-       # try:
-     #       self.itemList = self.projectDict['assets'][self.classKey][self.assetSelect][self.processLevel]['scenes'].keys()
-       #     self.itemList = self.projectDict['shot'][self.assetSelect][self.processLevel]['scenes'].keys()
-         
-       # except:
-        #    print "Do Not Have this process"   
-            
-       # print self.itemList
-        
-        
         
         
      
@@ -2282,34 +2198,35 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print self.classKey
        # print item        
         
-        
-        
-        
-        
-        
-        
-        
 
-        print "processLevel",self.processLevel
 
-        item = self.listWidget_assetProj.currentItem()
-        self.assetSelect = item.text()
-        print "assetSelect", self.assetSelect
 
-        self.classKey = self.assetsDict[self.assetSelect]
-        print "classKey", self.classKey
 
-        try:
-           # self.itemList = self.projectDict['assets'][self.classKey][self.assetSelect][self.processLevel]['scenes'].keys()
+
+
+
+
+
+        
+    def itemListReq(self,isAsset):
+        
+        if self.isAsset == "1":
+            self.itemList = self.projectDict['assets'][self.classKey][self.assetSelect][self.processLevel]['scenes'].keys()
+            print self.itemList
+            
+        else:
+           # print "bbbbbbbbbbbbbb"
+          #  print self.projectDict
+          #  print self.assetSelect
+          #  print self.processLevel
             self.itemList = self.projectDict['shot'][self.assetSelect][self.processLevel]['scenes'].keys()
-        except:
-            print "Do Not Have this process"   
-
-        print self.itemList
-
+         #   print self.projectDict['shot'][self.assetSelect]
+            print self.itemList
+        
 
         
-        
+
+                
         
         
         
