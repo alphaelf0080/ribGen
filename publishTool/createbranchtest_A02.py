@@ -202,7 +202,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
        # item = self.treeWidget_branches.currentItem()
         item = self.treeWidget_branches.currentItem()
-        count = self.treeWidget_branches.currentIndex().row()
+        count = self.treeWidget_branches.currentIndex().
         #topLevelItem = self.treeWidget_branches.indexFromItem(1)
         print item.text(0)
         print count
