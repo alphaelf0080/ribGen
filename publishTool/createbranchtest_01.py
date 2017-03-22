@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/publishTool/createbranchtest_01.ui'
 #
-# Created: Fri Mar 17 00:52:53 2017
+# Created: Thu Mar 23 00:50:05 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,20 +12,20 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(640, 648)
+        MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.pushButton_createNewBranch = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_createNewBranch.setGeometry(QtCore.QRect(260, 120, 221, 41))
+        self.pushButton_createNewBranch.setGeometry(QtCore.QRect(310, 450, 251, 41))
         self.pushButton_createNewBranch.setObjectName("pushButton_createNewBranch")
         self.lineEdit_branchName = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_branchName.setGeometry(QtCore.QRect(260, 50, 221, 41))
+        self.lineEdit_branchName.setGeometry(QtCore.QRect(10, 450, 261, 41))
         self.lineEdit_branchName.setObjectName("lineEdit_branchName")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(260, 10, 161, 21))
+        self.label.setGeometry(QtCore.QRect(10, 420, 161, 21))
         self.label.setObjectName("label")
         self.treeWidget_branches = QtWidgets.QTreeWidget(self.centralwidget)
-        self.treeWidget_branches.setGeometry(QtCore.QRect(10, 10, 221, 391))
+        self.treeWidget_branches.setGeometry(QtCore.QRect(10, 10, 600, 400))
         self.treeWidget_branches.setObjectName("treeWidget_branches")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
@@ -42,6 +42,12 @@ class Ui_MainWindow(object):
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_2 = QtWidgets.QTreeWidgetItem(item_1)
         item_2 = QtWidgets.QTreeWidgetItem(item_1)
+        self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 510, 261, 41))
+        self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
+        self.pushButton_mergeToMaster = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_mergeToMaster.setGeometry(QtCore.QRect(310, 510, 251, 41))
+        self.pushButton_mergeToMaster.setObjectName("pushButton_mergeToMaster")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -74,6 +80,8 @@ class Ui_MainWindow(object):
         self.treeWidget_branches.topLevelItem(4).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_Key", None, -1))
         self.treeWidget_branches.topLevelItem(4).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
         self.treeWidget_branches.setSortingEnabled(__sortingEnabled)
+        self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
+        self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
 
 
 

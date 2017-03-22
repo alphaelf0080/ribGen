@@ -10,25 +10,24 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 import json
 
-from PySide2 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(640, 648)
+        MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.pushButton_createNewBranch = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_createNewBranch.setGeometry(QtCore.QRect(480, 100, 151, 41))
+        self.pushButton_createNewBranch.setGeometry(QtCore.QRect(310, 450, 251, 41))
         self.pushButton_createNewBranch.setObjectName("pushButton_createNewBranch")
         self.lineEdit_branchName = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_branchName.setGeometry(QtCore.QRect(480, 40, 151, 41))
+        self.lineEdit_branchName.setGeometry(QtCore.QRect(10, 450, 261, 41))
         self.lineEdit_branchName.setObjectName("lineEdit_branchName")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(480, 10, 161, 21))
+        self.label.setGeometry(QtCore.QRect(10, 420, 161, 21))
         self.label.setObjectName("label")
         self.treeWidget_branches = QtWidgets.QTreeWidget(self.centralwidget)
-        self.treeWidget_branches.setGeometry(QtCore.QRect(10, 10, 411, 391))
+        self.treeWidget_branches.setGeometry(QtCore.QRect(10, 10, 600, 400))
         self.treeWidget_branches.setObjectName("treeWidget_branches")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
@@ -46,11 +45,11 @@ class Ui_MainWindow(object):
         item_2 = QtWidgets.QTreeWidgetItem(item_1)
         item_2 = QtWidgets.QTreeWidgetItem(item_1)
         self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(480, 170, 151, 41))
+        self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 510, 261, 41))
         self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
-        self.pushButton_testA = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_testA.setGeometry(QtCore.QRect(480, 360, 151, 41))
-        self.pushButton_testA.setObjectName("pushButton_testA")
+        self.pushButton_mergeToMaster = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_mergeToMaster.setGeometry(QtCore.QRect(310, 510, 251, 41))
+        self.pushButton_mergeToMaster.setObjectName("pushButton_mergeToMaster")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -84,7 +83,8 @@ class Ui_MainWindow(object):
         self.treeWidget_branches.topLevelItem(4).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
         self.treeWidget_branches.setSortingEnabled(__sortingEnabled)
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
-        self.pushButton_testA.setText(QtWidgets.QApplication.translate("MainWindow", "testA", None, -1))
+        self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
+
 
 
 
@@ -97,10 +97,18 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.QTITEM.ACTION.connect(self.MODDEF)
         self.setupUi(self)
         self.branch_index = 0
-    #def self.MODDEF(self):
+        self.assetName  = "anna"
+        self.getExistBranchDict()
+        self.exportBranchJsonFile()
+  
+    #def self.MODDEF(self):asserName
     
     
-        self.pushButton_createNewBranch.clicked.connect(self.getExistBranchDict)
+        #get initial asset branch dictionary
+        self.pushButton_reNewBranchDict.clicked.connect(self.getExistBranchDict)
+        
+        self.pushButton_createNewBranch.clicked.connect(self.createTestTreeDict)
+
 
         self.getCurrentLevelList = []
 
@@ -140,9 +148,58 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
        # print self.itemCount
         #print self.itemList
         
+    def createTestTreeDict(self):  # creat New Branch Test  
+        
+        itemSelect = self.treeWidget_branches.currentItem()
+        
+        print itemSelect.parent()# == "None":
+           # print "topLevelItem"
+            
+      #  else:
+        #    depth = 1
+            
+      #  print depth
         
         
-    def createTestTreeDict(self):    
+       # print itemSelect.parent().text(0)
+        
+        
+        
+        
+    def createTestTreeDictB(self):  # creat New Branch Test  
+        
+        selectItem = self.treeWidget_branches.currentItem()
+        
+        print selectItem.text(0)
+        
+         
+        selectItemLevel = selectItem.parent()
+        print selectItemLevel.text(0)
+        
+        if selectItemLevel.isEnable() == "True":
+        #if len(selectItemLevel.text(0)) >= 1:
+            print "aaa"
+            #print selectItemLevel.text(0)
+            depth = 1
+           # selectItemLevel = selectItemLevel.parent()
+           # if len(selectItemLevel.text(0)) >= 1:
+              #  depth = 2
+                
+          #  else:
+  
+            
+        else:
+            print "it is topLevelItem"
+            pass
+                
+        print depth
+                 
+        #print selectItemLevel
+       # print len(selectItemLevel)
+        
+        
+        
+    def createTestTreeDictC(self):  # creat New Branch Test  
         print " test test test test test"  
         
         #find topLevelItems and store in List
@@ -194,17 +251,17 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def getExistBranchDict(self):
         
         
-        branchDict={"0":{"master":[]}}
+        self.branchDict={"0":{"master":{}}}
         
         topLayerCount = self.treeWidget_branches.topLevelItemCount()
-        #print branchDict
+        #print self.branchDict
 
         
         for itemCount in range(1,topLayerCount):
             topLevelKeyNum = itemCount
             
             # update topLevelItem
-            branchDict.update({"%s"%topLevelKeyNum:{self.treeWidget_branches.topLevelItem(itemCount).text(0):[]}})
+            self.branchDict.update({"%s"%topLevelKeyNum:{self.treeWidget_branches.topLevelItem(itemCount).text(0):{}}})
 
         
         for itemCount in range(1,topLayerCount):   # add secLevelItems except Master
@@ -222,21 +279,41 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     secLayerItemName = self.treeWidget_branches.topLevelItem(itemCount).child(secLayerItemNum).text(0)
 
                    # print secLayerItemName
-                    branchDict[str(itemCount)][(branchDict[str(itemCount)].keys()[0])].append({secLayerItemName:{}})
+                    self.branchDict[str(itemCount)][(self.branchDict[str(itemCount)].keys()[0])].update({secLayerItemName:{}})
                     
                     thirdLevelCount = self.treeWidget_branches.topLevelItem(itemCount).child(secLayerItemNum).childCount()
                     
+                    # update 3rd level items
+                    
                     for thirdLevelItemNum in range(0,thirdLevelCount):
+                        
+                        thirdLevelItemIndex = self.treeWidget_branches.topLevelItem(itemCount).child(secLayerItemNum)
                         
                         thirdLevelItemName = self.treeWidget_branches.topLevelItem(itemCount).child(secLayerItemNum).child(thirdLevelItemNum).text(0)
                         
-                        print thirdLevelItemName 
+                        self.branchDict[str(itemCount)][(self.branchDict[str(itemCount)].keys()[0])][secLayerItemName].update({thirdLevelItemName:{}})
+                        
+                        
+                        
+                        #print thirdLevelItemName 
                     
-                    print thirdLevelCount
+                    #print thirdLevelCount
                     
-        formatedBranchDict = json.dumps(branchDict, sort_keys=True , indent =4)  
+
+        print self.branchDict
+        self.exportBranchJsonFile()
+        
+        
+        
+        
+
+            
+    def exportBranchJsonFile(self):  
+        
+          
+        formatedBranchDict = json.dumps(self.branchDict, sort_keys=True , indent =4)  
                
-        branchDictFile = "c:/temp/branchDictFile.json"
+        branchDictFile = "c:/temp/"+"%s"%self.assetName + "_branchDictFile.json"
         
         storeFile = open(branchDictFile,'w')
         
@@ -245,7 +322,14 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         storeFile.close
                     
 
-       # print formatedBranchDict
+        print formatedBranchDict
+        
+        
+    
+        
+        
+        
+        
         
         
         
@@ -257,38 +341,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
         
-        
-        
-        
-        
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
     def createTestTreeDictB(self):      
         
