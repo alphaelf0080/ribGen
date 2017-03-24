@@ -29,21 +29,7 @@ class Ui_MainWindow(object):
         self.treeWidget_branches = QtWidgets.QTreeWidget(self.centralwidget)
         self.treeWidget_branches.setGeometry(QtCore.QRect(10, 10, 600, 400))
         self.treeWidget_branches.setObjectName("treeWidget_branches")
-        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
-        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
-        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
-        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
+
         self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 510, 261, 41))
         self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
@@ -66,21 +52,7 @@ class Ui_MainWindow(object):
         self.treeWidget_branches.headerItem().setText(0, QtWidgets.QApplication.translate("MainWindow", "branch Info", None, -1))
         __sortingEnabled = self.treeWidget_branches.isSortingEnabled()
         self.treeWidget_branches.setSortingEnabled(False)
-        self.treeWidget_branches.topLevelItem(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
-        self.treeWidget_branches.topLevelItem(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01", None, -1))
-        self.treeWidget_branches.topLevelItem(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_ext01", None, -1))
-        self.treeWidget_branches.topLevelItem(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_ext02", None, -1))
-        self.treeWidget_branches.topLevelItem(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_02", None, -1))
-        self.treeWidget_branches.topLevelItem(3).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_01", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02_v1", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02_v2", None, -1))
-        self.treeWidget_branches.topLevelItem(4).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp", None, -1))
-        self.treeWidget_branches.topLevelItem(4).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_AO", None, -1))
-        self.treeWidget_branches.topLevelItem(4).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_lightPass", None, -1))
-        self.treeWidget_branches.topLevelItem(4).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_Key", None, -1))
-        self.treeWidget_branches.topLevelItem(4).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
+
         self.treeWidget_branches.setSortingEnabled(__sortingEnabled)
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
         self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
@@ -96,6 +68,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(mod_MainWindow, self).__init__(parent)
         #self.QTITEM.ACTION.connect(self.MODDEF)
         self.setupUi(self)
+        
+        
+        self.initalItemBuild()
+
         self.branch_index = 0
         self.assetName  = "anna"
         self.getExistBranchDict()
@@ -108,20 +84,69 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #get initial asset branch dictionary
         self.pushButton_reNewBranchDict.clicked.connect(self.getExistBranchDict)
         
-        #self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
-        self.pushButton_createNewBranch.clicked.connect(self.test)
+        self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
+        #self.pushButton_createNewBranch.clicked.connect(self.test)
 
-        self.pushButton_mergeToMaster.clicked.connect(self.getChildIndexCount)
+        self.pushButton_mergeToMaster.clicked.connect(self.changeName)
 
         self.getCurrentLevelList = []
+        
+        
+    def initalItemBuild(self):
+        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
+        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
+        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
+        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
+        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
+        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
+        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
+        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
+        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
+        self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
+        
+        self.treeWidget_branches.topLevelItem(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
+        self.treeWidget_branches.topLevelItem(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01", None, -1))
+        self.treeWidget_branches.topLevelItem(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_ext01", None, -1))
+        self.treeWidget_branches.topLevelItem(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_ext02", None, -1))
+        self.treeWidget_branches.topLevelItem(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_02", None, -1))
+        self.treeWidget_branches.topLevelItem(3).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra", None, -1))
+        self.treeWidget_branches.topLevelItem(3).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_01", None, -1))
+        self.treeWidget_branches.topLevelItem(3).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02", None, -1))
+        self.treeWidget_branches.topLevelItem(3).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02_v1", None, -1))
+        self.treeWidget_branches.topLevelItem(3).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02_v2", None, -1))
+        self.treeWidget_branches.topLevelItem(4).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp", None, -1))
+        self.treeWidget_branches.topLevelItem(4).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_AO", None, -1))
+        self.treeWidget_branches.topLevelItem(4).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_lightPass", None, -1))
+        self.treeWidget_branches.topLevelItem(4).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_Key", None, -1))
+        self.treeWidget_branches.topLevelItem(4).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
+        
+        
+        
         
     def test(self):
         
         print "test"
-                    
-        self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-            
-        self.treeWidget_branches.topLevelItem(1).child(2).setText()#0, QtWidgets.QApplication.translate("MainWindow", "ggyy", None, -1))
+        
+        
+        
+
+        # addChild sanple:       QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(0)).addChild(0)
+        
+        
+           
+      #  self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+       # self.treeWidget_branches.topLevelItem(5).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
+
+       # self.item_0 =  QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+       # self.treeWidget_branches.topLevelItem(0).child(1).setText(0,QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
+       # QtWidgets.QTreeWidgetItem(self.item_0).topLevelItem(0).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "ggg", None, -1))
+        #.topLevelItem(1).child(2)).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
+        #self.treeWidget_branches.topLevelItem(1).child(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "ggyy", None, -1))
 
 
 
@@ -360,33 +385,73 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #print len(self.fullItemIndex)    
        # print self.fullItemIndex 
         itemSelect = self.treeWidget_branches.currentItem().text(0)
+        self.newBranch = self.lineEdit_branchName.text()
+
     
         if len(self.fullItemIndex) == 1:
             print "Create level 2 branch"
            # item_1 = QtWidgets.QTreeWidgetItem(item_0)
-            existLevelCount = len(self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys())
-            print existLevelCount
-            
-            item_1 = QtWidgets.QTreeWidgetItem(item_0)
-            
-            self.treeWidget_branches.topLevelItem(1).child(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "ggyy", None, -1))
+            existLevelCount = len(self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys())   # = child,secLevelIndex
+            secItemList = self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys()
+            print self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys()
+           # print 'existLevelCount       :',existLevelCount
+           # print self.fullItemIndex
+            topLevelIndex = int(self.fullItemIndex[0])
+           # print type(self.fullItemIndex[0])
+            if self.newBranch in secItemList:
+                print"Change New Branch Name"
+                pass
+                
+                
+            else:
+         
+                try:
+                    # addChild sanple:       QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(0)).addChild(0)
+                    newSecBranchItem = QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex)).addChild(existLevelCount)
+                except:
+                    #pass
+                
+                    print "change Name"
+                    print topLevelIndex, existLevelCount
+                    
+            self.treeWidget_branches.topLevelItem(topLevelIndex).child(existLevelCount).setText(0,self.newBranch)
 
 
-           # self.treeWidget_branches.topLevelItem(1).child((0)).setText(0,QtWidgets.QApplication.translate("MainWindow", "tempName", None, -1))
-           # self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).child(1).setText(0,self.newBranch )
-        
             
+           # self.treeWidget_branches.topLevelItem(topLevelIndex).setText(0,QtWidgets.QApplication.translate("MainWindow", "tempName", None, -1))
+            #self.treeWidget_branches.topLevelItem(topLevelIndex).setText(0,self.newBranch )
+                
         elif len(self.fullItemIndex) == 2:
             print "Create level 3 branch"
-           # item_2 = QtWidgets.QTreeWidgetItem(item_1)
+            print self.fullItemIndex
+                
+               # item_2 = QtWidgets.QTreeWidgetItem(item_1)
 
-       # elif len(self.fullItemIndex) == 3:
-       #     print "Create level 4 branch"
+           # elif len(self.fullItemIndex) == 3:
+           #     print "Create level 4 branch"
 
 
         else:
             print"too many Branch Eevels"
-
+            print self.fullItemIndex
+            
+       # self.getExistBranchDict()
+      
+        
+        
+    def changeName(self):
+        print "change branch name"
+       # print self.treeWidget_branches.currentItem().text(0)
+        self.treeWidget_branches.topLevelItem(0).child(0).setText(0,"sdsdsd")
+        #self.treeWidget_branches.topLevelItem(0).setText(0,QtWidgets.QApplication.translate("MainWindow", "tempName", None, -1))
+       # self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setText(0,self.newBranch )
+        
+        
+        #self.treeWidget_branches.topLevelItem(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "gggg", None, -1))
+        
+        
+        
+        
         
         
     def createTestTreeDictB(self):  # creat New Branch Test  
