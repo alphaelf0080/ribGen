@@ -110,11 +110,17 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
 
-        self.pushButton_mergeToMaster.clicked.connect(self.getSelectItemLevel)
+        self.pushButton_mergeToMaster.clicked.connect(self.getChildIndexCount)
 
         self.getCurrentLevelList = []
 
 
+    def getChildIndexCount(self):
+        
+        itemSelect = self.treeWidget_branches.currentItem()
+        print itemSelect.text(0)
+
+       # self.treeWidget_branches.current
 
     def createBranchDict(self):            #push button
         print "create New Branch"
@@ -190,7 +196,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.depth =0            
                             
                             
-        print self.depth        
+      #  print self.depth        
 
         self.findParentTopLevelItem(self.depth)
     
@@ -199,58 +205,86 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         selectItem = self.treeWidget_branches.currentItem().text(0)
         
         
-        print selectItem
+       # print selectItem
 
-        
+        ##finding top Level Item topLevelItem(topItemLayerIndex)
         if self.depth == 0:
             print "top level item"
-            topItemLayerIndex = self.topLayerItemDict[selectItem]
+            topLevelItemIndex = self.topLayerItemDict[selectItem]
             
           #  print "\"" + selectItem + "\"" ,"topLevelItem__:",selectItem,"____topItemLayerIndex____:","  ", "\"", topItemLayerIndex, "\""
             print "selectItem          :",selectItem
-            print "parentTopLevelItem  :",selectItem
-            print "topLevelItemIndex   :",topItemLayerIndex
+            print "topLevelItem  :",selectItem
+            print "topLevelItemIndex   :",topLevelItemIndex  
             
-            
+            self.fullItemIndex = [topLevelItemIndex]
 
+    #    print self.topLayerItemDict
+    #    print secLayerItemDict
+   #     print self.thirdLayerItemDict
+        
 
 
 
 
            
            # parentTopLayerItem
+           
+           
+        #finding 2nd level item topLevelItemIndex and childIndex ,     topLevelItem(topLevelItemIndex).child(secLevelItemIndex)
         elif self.depth == 1 :
             print "2nd level item"
             
             
-           # parentTopLayerItem = self.treeWidget_branches.currentItem().parent().text(0)
+            topLayerItem = self.treeWidget_branches.currentItem().parent().text(0)
             
-          #  topItemLayerIndex = self.topLayerItemDict[parentTopLayerItem]
+            topLevelItemIndex = self.topLayerItemDict[topLayerItem]
+            
+           # print self.secLayerItemDict
+            secLevelItemIndex = self.secLayerItemDict[selectItem]
+          
+            print "selectItem          :",selectItem
+            print "topLevelItem  :",topLayerItem
+            print "topLevelItemIndex   :",topLevelItemIndex         
+            print "secLevelItemIndex   :",secLevelItemIndex
+            
+            self.fullItemIndex = [topLevelItemIndex,secLevelItemIndex]
+            
 
-            
+        #finding 3rd level item topLevelItemIndex and childIndex ,     topLevelItem(topLevelItemIndex).child(secLevelItemIndex).chile(thirdLevelItemIndex)            
         else:
             print "3rd level item"
             
-           # parentTopLayerItem = self.treeWidget_branches.currentItem().parent().parent().text(0)
+
+            thirdLevelItemIndex = self.thirdLayerItemDict[selectItem]     
+            
+
+                        
+            secLayerItem = self.treeWidget_branches.currentItem().parent().text(0)  
+            
+            secLevelItemIndex = self.secLayerItemDict[secLayerItem]
+            
+            topLayerItem = self.treeWidget_branches.currentItem().parent().parent().text(0)
+            
+            topLevelItemIndex =self.topLayerItemDict[topLayerItem]
+
+           
+            
+
 
             
-         #   topItemLayerIndex = self.topLayerItemDict[parentTopLayerItem]
+            print "selectItem          :",selectItem
+            print "parentTopLevelItem  :",topLayerItem
+            print "parentSecLayerItem  :",secLayerItem
+            print "topLevelItemIndex   :",topLevelItemIndex          #topLevelItem(topLevelItemIndex).child(1)
+            print "secLevelItemIndex   :",secLevelItemIndex
+            print "thirdLevelItemIndex :",thirdLevelItemIndex
             
-        
-        #print 'selectItem_____:'+ selectItem , 'parentTopLayerItem_____:',parentTopLayerItem, "topItemLayerIndex_____:",topItemLayerIndex
-    
-    
+            self.fullItemIndex = [topLevelItemIndex,secLevelItemIndex,thirdLevelItemIndex]
+
         
     def createNewBranchCombo(self):  # creat New Branch Test  
-        
-       # self.topLayerItemsCount = len( self.branchDict.keys())
-        #print topLayerItemsCount
-      #  print self.topLayerCount
 
-      #  print self.allLayerItemsDict.keys()
-       # newTopLevelItemCount = topLayerItemsCount +1
-      #  print "newTopLevelItemCount",newTopLevelItemCount
-        
         itemSelect = self.treeWidget_branches.currentItem()
         self.newBranch = self.lineEdit_branchName.text()
         topLayerItem = []
@@ -262,15 +296,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if len(self.treeWidget_branches.selectedItems()) == 0:
                 
                 print "create topLayerItem"
-                #self.topLayerItemDict.keys()
-               # print self.topLayerItemList.keys()[0]
-              #  for item in self.topLayerItemDict.keys():    #check if the new branch Name exist on topLevelItem List 
-             #       topLayerItem.append(item.keys()[0])
-                
-             #   print topLayerItem
+
                 
                 if self.newBranch in self.topLayerItemDict.keys(): #check if the new branch Name exist on topLevelItem Dict 
                     print "change a new Branch Name"
+
                     
                 else:
                     print "create a new topLevelItem"
@@ -279,22 +309,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
             else:
+                
+                self.getSelectItemLevel()
+                self.createNewBranchChildLevel()
             
-                try:
-                    if len(itemSelect.parent().text(0)) >= 1:
-                        depth = 1             
-                        try:
-                            if len(itemSelect.parent().parent().text(0)) >= 1:
 
-                                depth = 2                   
-                        except:
-                                pass               
-                except:
-                    print "the Item is topLevelItem"
-                    depth =0            
-                            
-                            
-                print depth
                         
                         
         except:
@@ -302,13 +321,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 
-        
+    # create New Branch on Top Level ----------------------------------------------------------------------------------------------------------------------
     def createNewBranchTopLevel(self):      
         
-        #self.branch_index =self.treeWidget_branches.topLevelItemCount()
-       # print  self.branch_index
-       # self.treeWidget_branches.clear()   #get assetDict 
-  
+
         self.newBranch = self.lineEdit_branchName.text()
         print self.newBranch 
      
@@ -322,18 +338,40 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setText(0,QtWidgets.QApplication.translate("MainWindow", "tempName", None, -1))
         self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setText(0,self.newBranch )
-      #  self.branch_index = self.branch_index +1
         
-       # tempName = "tempName"
-
-       # self.treeWidget_branches.topLevelItem(self.branch_index).setText(0, QtWidgets.QApplication.translate("MainWindow", "kkkk", None, -1))
         
-     #   self.treeWidget_branches.topLevelItem(self.branch_index).setText(0, QtWidgets.QApplication.translate("MainWindow", "ghgh", None, -1))
+        
+        
+        
+        
+    # create New Branch on Child Level ----------------------------------------------------------------------------------------------------------------------
+    def createNewBranchChildLevel(self): 
+       # print"ggg"
+        #print len(self.fullItemIndex)    
+       # print self.fullItemIndex 
+        itemSelect = self.treeWidget_branches.currentItem().text(0)
+    
+        if len(self.fullItemIndex) == 1:
+            print "Create level 2 branch"
+            item_1 = QtWidgets.QTreeWidgetItem(item_0)
+            existLevelCount = len(self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys())
+            print existLevelCount
+            
 
-      #  topLevelItem.setText(0,self.currentLevelItems[i])
+            self.treeWidget_branches.topLevelItem(1).child((0)).setText(0,QtWidgets.QApplication.translate("MainWindow", "tempName", None, -1))
+           # self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).child(1).setText(0,self.newBranch )
+        
+            
+        elif len(self.fullItemIndex) == 2:
+            print "Create level 3 branch"
+           # item_2 = QtWidgets.QTreeWidgetItem(item_1)
+
+       # elif len(self.fullItemIndex) == 3:
+       #     print "Create level 4 branch"
 
 
-
+        else:
+            print"too many Branch Eevels"
 
         
         
