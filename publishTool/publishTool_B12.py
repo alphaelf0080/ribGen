@@ -6,6 +6,15 @@
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
+#
+#
+#1.file save load system
+#2. master branch system
+#3. check file
+#4. collect shader ,texture system
+#5. publish system
+
+
 from PySide2 import QtCore, QtGui, QtWidgets
 import os
 import maya.cmds as cmds
