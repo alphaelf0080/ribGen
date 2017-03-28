@@ -47,107 +47,31 @@ class Ui_MainWindow(object):
         font.setPointSize(9)
         self.tableWidget_FileList.setFont(font)
         self.tableWidget_FileList.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        
         self.tableWidget_FileList.setAlternatingRowColors(True)
         self.tableWidget_FileList.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        
+        self.tableWidget_FileList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+
         self.tableWidget_FileList.setObjectName("tableWidget_FileList")
         self.tableWidget_FileList.setColumnCount(3)
-        self.tableWidget_FileList.setRowCount(15)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(5, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(6, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(7, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(8, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(9, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(10, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(11, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(12, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(13, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(14, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(0, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(0, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(1, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(1, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(1, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(2, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(2, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(2, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(3, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(3, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(3, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(4, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(4, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(4, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(5, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(5, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(5, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(6, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(6, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(6, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(7, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(7, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(7, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(8, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(8, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(8, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(9, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(9, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(10, 1, item)
+        self.tableWidget_FileList.setRowCount(99)
+        self.tableItem = QtWidgets.QTableWidgetItem()
+
+        self.tableItem = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setHorizontalHeaderItem(0, self.tableItem)
+        self.tableItem = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setHorizontalHeaderItem(1, self.tableItem)
+        self.tableItem = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setHorizontalHeaderItem(2, self.tableItem)
+
+
+
+       # self.tableWidget_FileList.verticalHeaderItem(0).setText(QtWidgets.QApplication.translate("MainWindow", "01", None, -1))
+      #  self.tableWidget_FileList.verticalHeaderItem(1).setText(QtWidgets.QApplication.translate("MainWindow", "02", None, -1))
+
+
+
         self.tableWidget_FileList.horizontalHeader().setVisible(False)
         self.tableWidget_FileList.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget_FileList.horizontalHeader().setDefaultSectionSize(60)
@@ -177,81 +101,19 @@ class Ui_MainWindow(object):
         self.treeWidget_branches.setSortingEnabled(__sortingEnabled)
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
         self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(0).setText(QtWidgets.QApplication.translate("MainWindow", "01", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(1).setText(QtWidgets.QApplication.translate("MainWindow", "02", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(2).setText(QtWidgets.QApplication.translate("MainWindow", "03", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(3).setText(QtWidgets.QApplication.translate("MainWindow", "04", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(4).setText(QtWidgets.QApplication.translate("MainWindow", "05", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(5).setText(QtWidgets.QApplication.translate("MainWindow", "06", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(6).setText(QtWidgets.QApplication.translate("MainWindow", "07", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(7).setText(QtWidgets.QApplication.translate("MainWindow", "08", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(8).setText(QtWidgets.QApplication.translate("MainWindow", "09", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(9).setText(QtWidgets.QApplication.translate("MainWindow", "10", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(10).setText(QtWidgets.QApplication.translate("MainWindow", "11", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(11).setText(QtWidgets.QApplication.translate("MainWindow", "12", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(12).setText(QtWidgets.QApplication.translate("MainWindow", "13", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(13).setText(QtWidgets.QApplication.translate("MainWindow", "14", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(14).setText(QtWidgets.QApplication.translate("MainWindow", "15", None, -1))
+
         self.tableWidget_FileList.horizontalHeaderItem(0).setText(QtWidgets.QApplication.translate("MainWindow", "Ver.", None, -1))
         self.tableWidget_FileList.horizontalHeaderItem(1).setText(QtWidgets.QApplication.translate("MainWindow", "UserName", None, -1))
         self.tableWidget_FileList.horizontalHeaderItem(2).setText(QtWidgets.QApplication.translate("MainWindow", "Date..................................................", None, -1))
         __sortingEnabled = self.tableWidget_FileList.isSortingEnabled()
         self.tableWidget_FileList.setSortingEnabled(False)
-        self.tableWidget_FileList.item(0, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v009", None, -1))
-        self.tableWidget_FileList.item(0, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(0, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(1, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v008", None, -1))
-        self.tableWidget_FileList.item(1, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(1, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(2, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v007", None, -1))
-        self.tableWidget_FileList.item(2, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(2, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(3, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v006", None, -1))
-        self.tableWidget_FileList.item(3, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(3, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(4, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v005", None, -1))
-        self.tableWidget_FileList.item(4, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(4, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(5, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v004", None, -1))
-        self.tableWidget_FileList.item(5, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(5, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(6, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v003", None, -1))
-        self.tableWidget_FileList.item(6, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(6, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(7, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v002", None, -1))
-        self.tableWidget_FileList.item(7, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(7, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(8, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v001", None, -1))
-        self.tableWidget_FileList.item(8, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(8, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
+
         self.tableWidget_FileList.setSortingEnabled(__sortingEnabled)
 
 
 
 
-class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-   
-    def __init__(self, parent= QtWidgets.QApplication.activeWindow()):
-        super(mod_MainWindow, self).__init__(parent)
-        #self.QTITEM.ACTION.connect(self.MODDEF)
-        self.setupUi(self)
-    #def self.MODDEF(self):
 
-
-
-def main():
-    global ui
-    app = QtWidgets.QApplication.instance()
-    if app == None: app = QtWidgets.QApplication(sys.argv)
-    try:
-        ui.close()
-        ui.deleteLater()
-    except: pass
-    ui = mod_MainWindow()
-    ui.show()
- 
-if __name__ == '__main__':
-    main()
 
 
  
@@ -284,6 +146,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.pushButton_createNewBranch.clicked.connect(self.test)
 
         self.pushButton_mergeToMaster.clicked.connect(self.test)
+        
+        self.treeWidget_branches.itemClicked.connect(self.printOutBranchInfo)
+        
+        self.tableWidget_FileList.itemClicked.connect(self.printOutFileInfo)
+
 
         self.getCurrentLevelList = []
         
@@ -295,7 +162,12 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.branchDict={"0":{"master":{}}}    #default Master Item
         
         self.loadExistBranchData()
-
+        
+       # self.loadExistFileInfo()
+        
+        
+        
+    #---------------Load Exist Branch Data From Dictionary Start-------------------------------------------------------------------------------------------------------
     def loadExistBranchData(self):
         print "initial all Tree Data"
         self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
@@ -329,20 +201,126 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
       #  self.treeWidget_branches.topLevelItem(4).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_lightPass", None, -1))
       #  self.treeWidget_branches.topLevelItem(4).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_Key", None, -1))
        # self.treeWidget_branches.topLevelItem(4).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
+       
+       
+    #---------------Load Exist Branch Data From Dictionary End-------------------------------------------------------------------------------------------------------
+     
+   
+   
+   
+    #---------------Load Exist File Information From Dictionary Start-------------------------------------------------------------------------------------------------------
+    
+    def loadExistFileInfo(self):
         
+        self.tableItem = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setItem(0, 0, self.tableItem)
+        self.tableItem = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setItem(0, 1, self.tableItem)
+
+        
+
+        
+        self.tableWidget_FileList.item(0, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v009", None, -1))
+        self.tableWidget_FileList.item(0, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
+       # self.tableWidget_FileList.item(0, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
+       # self.tableWidget_FileList.item(1, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v008", None, -1))
+       # self.tableWidget_FileList.item(1, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
+
+        
+    #---------------Load Exist File Information From Dictionary END-------------------------------------------------------------------------------------------------------
+     
+        
+    def testFileInfoDict(self):
+        
+        self.fileInfoDice = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
+                             '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
+                             '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
+                             '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
+                             '05':["projectName_assetClass_assetName_process_v005_alpha.mb","alpha","2017/03/28    10:32"],
+                             '06':["projectName_assetClass_assetName_process_v006_alpha.mb","alpha","2017/03/28    10:33"],
+                             '07':["projectName_assetClass_assetName_process_v007_alpha.mb","alpha","2017/03/28    10:34"],
+                             '08':["projectName_assetClass_assetName_process_v008_alpha.mb","alpha","2017/03/28    10:35"],
+                             '09':["projectName_assetClass_assetName_process_v009_alpha.mb","alpha","2017/03/28    10:36"],
+                             '10':["projectName_assetClass_assetName_process_v010_alpha.mb","alpha","2017/03/28    10:37"],
+                             '11':["projectName_assetClass_assetName_process_v011_alpha.mb","alpha","2017/03/28    10:38"],
+                             '12':["projectName_assetClass_assetName_process_v012_alpha.mb","alpha","2017/03/28    10:39"],
+                             '13':["projectName_assetClass_assetName_process_v013_alpha.mb","alpha","2017/03/28    10:40","info vcvcxvcccccccc"],
+                             '14':["projectName_assetClass_assetName_process_v014_alpha.mb","alpha","2017/03/28    10:41"],
+                             '15':["projectName_assetClass_assetName_process_v015_alpha.mb","alpha","2017/03/28    10:42"],
+                             '16':["projectName_assetClass_assetName_process_v016_alpha.mb","alpha","2017/03/28    10:43"],
+                             '17':["projectName_assetClass_assetName_process_v017_alpha.mb","alpha","2017/03/28    10:44"],
+                             '18':["projectName_assetClass_assetName_process_v018_alpha.mb","alpha","2017/03/28    10:45"],
+                             '19':["projectName_assetClass_assetName_process_v019_alpha.mb","alpha","2017/03/28    10:46"],
+                             '20':["projectName_assetClass_assetName_process_v020_alpha.mb","alpha","2017/03/28    10:47"],
+                             '21':["projectName_assetClass_assetName_process_v021_alpha.mb","alpha","2017/03/28    10:48"]
+                             }
+        
+
         
         
         
     def test(self):
         
-        print "test"
+        self.testFileInfoDict()
         
-        self.getExistBranchDict()
-        self.updateMasterDateInBranchDict()
+      #  self.tableItem = QtWidgets.QTableWidgetItem()
+      #  self.tableWidget_FileList.item(0,0).setText('aaaaa')
+      
+        tableIndex = sorted(self.fileInfoDice.keys())  #string
         
-       # print self.branchDict
+        verIndex = sorted(self.fileInfoDice.keys(), reverse = True )
+        
+      #  print verIndex
 
+        for i , j  in zip(range(0,(int(tableIndex[-1]))+1),verIndex):
+            
+            
+            
+            
+            
+            
+            #print i,type(i) , j,type(j)
+            self.tableItem = QtWidgets.QTableWidgetItem()
+            self.tableWidget_FileList.setItem(i, 0, self.tableItem)
+            self.tableItem = QtWidgets.QTableWidgetItem()
+            self.tableWidget_FileList.setItem(i, 1, self.tableItem)
+            self.tableItem = QtWidgets.QTableWidgetItem()
+            self.tableWidget_FileList.setItem(i, 2, self.tableItem)
+            
+            itemVer = self.fileInfoDice[str(j)][0].split('_')[4]    #get version data,form dictionary,
+           # print itemVer
+            itemUser = self.fileInfoDice[str(j)][1]
+           # print itemUser
+            itemDate = self.fileInfoDice[str(j)][2]
+          #  print itemVer#, itemUser, itemDate
+            
+            self.tableWidget_FileList.item(i, 0).setText(QtWidgets.QApplication.translate("MainWindow", itemVer, None, -1))
+            self.tableWidget_FileList.item(i, 1).setText(QtWidgets.QApplication.translate("MainWindow", itemUser, None, -1))
+           # self.tableWidget_FileList.item(i, 1).setText(itemUser)
+            self.tableWidget_FileList.item(i, 2).setText(QtWidgets.QApplication.translate("MainWindow", itemDate, None, -1))
+           # self.tableWidget_FileList.item(i, 2).setText(itemDate)
+
+
+
+
+
+    def printOutBranchInfo(self):
+       # print "gggggggggggggggg"
+        self.textBrowser_BranchFileInfo.setText("sssssssssssss")
+
+
+
+
+
+
+    def printOutFileInfo(self):
+       # print "gggggggggggggggg"
+        self.textBrowser_BranchFileInfo.setText("sssssssssssss")
         
+        getFileKey = self.tableWidget_FileList.currentItem().text()
+
+        print getFileKey
+
 
 
 
