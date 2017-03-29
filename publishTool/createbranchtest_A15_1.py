@@ -8,7 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PySide2 import QtCore, QtGui, QtWidgets
-import json
+import json , os
 
 
 
@@ -37,38 +37,11 @@ class Ui_MainWindow(object):
         self.treeWidget_branches.setExpandsOnDoubleClick(True)
         self.treeWidget_branches.setObjectName("treeWidget_branches")
         
-        
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        font.setWeight(75)
-        font.setBold(True)
-        brush = QtGui.QBrush(QtGui.QColor(247, 126, 128))
-        brush.setStyle(QtCore.Qt.NoBrush)
-        item_0.setForeground(0, brush)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        font = QtGui.QFont()
-        font.setUnderline(True)
-        brush = QtGui.QBrush(QtGui.QColor(215, 255, 208))
-        brush.setStyle(QtCore.Qt.NoBrush)
-        item_0.setForeground(0, brush)
-        '''
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        font = QtGui.QFont()
-        font.setItalic(True)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        font = QtGui.QFont()
-        font.setItalic(True)
-        '''
-        '''
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_2 = QtWidgets.QTreeWidgetItem(item_1)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-        '''
+
+
+
+
+
         self.treeWidget_branches.header().setVisible(False)
         self.treeWidget_branches.header().setCascadingSectionResizes(False)
         self.treeWidget_branches.header().setDefaultSectionSize(311)
@@ -93,108 +66,22 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.setObjectName("tableWidget_FileList")
         self.tableWidget_FileList.setColumnCount(3)
         self.tableWidget_FileList.setRowCount(99)
-        '''
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(5, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(6, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(7, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(8, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(9, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(10, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(11, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(12, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(13, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setVerticalHeaderItem(14, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setHorizontalHeaderItem(2, item)
-        '''
+
+
+
+
+
+
         brush = QtGui.QBrush(QtGui.QColor(192, 231, 248))
         brush.setStyle(QtCore.Qt.NoBrush)
         item = QtWidgets.QTableWidgetItem()
         item.setForeground(brush)
-        '''
-        self.tableWidget_FileList.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(0, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(0, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(1, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(1, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(1, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(2, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(2, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(2, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(3, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(3, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(3, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(4, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(4, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(4, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(5, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(5, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(5, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(6, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(6, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(6, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(7, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(7, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(7, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(8, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(8, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(8, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(9, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_FileList.setItem(9, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        '''
+
+
+
+
+
+
         self.tableWidget_FileList.setItem(10, 1, item)
         self.tableWidget_FileList.horizontalHeader().setVisible(False)
         self.tableWidget_FileList.horizontalHeader().setCascadingSectionResizes(False)
@@ -247,74 +134,21 @@ class Ui_MainWindow(object):
         self.treeWidget_branches.headerItem().setText(0, QtWidgets.QApplication.translate("MainWindow", "branch Info", None, -1))
         __sortingEnabled = self.treeWidget_branches.isSortingEnabled()
         self.treeWidget_branches.setSortingEnabled(False)
-        '''
-        self.treeWidget_branches.topLevelItem(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
-        self.treeWidget_branches.topLevelItem(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01", None, -1))
-        self.treeWidget_branches.topLevelItem(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_a", None, -1))
-        self.treeWidget_branches.topLevelItem(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_b", None, -1))
-        self.treeWidget_branches.topLevelItem(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_02", None, -1))
-        self.treeWidget_branches.topLevelItem(3).setText(0, QtWidgets.QApplication.translate("MainWindow", "test", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "test_a01", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "test_a02", None, -1))
-        self.treeWidget_branches.topLevelItem(3).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "test_a02_1", None, -1))
-        self.treeWidget_branches.topLevelItem(4).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp", None, -1))
-        self.treeWidget_branches.topLevelItem(5).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra", None, -1))
-        '''
+
+
+
+
         self.treeWidget_branches.setSortingEnabled(__sortingEnabled)
         
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
         self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
-        '''
-        self.tableWidget_FileList.verticalHeaderItem(0).setText(QtWidgets.QApplication.translate("MainWindow", "01", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(1).setText(QtWidgets.QApplication.translate("MainWindow", "02", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(2).setText(QtWidgets.QApplication.translate("MainWindow", "03", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(3).setText(QtWidgets.QApplication.translate("MainWindow", "04", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(4).setText(QtWidgets.QApplication.translate("MainWindow", "05", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(5).setText(QtWidgets.QApplication.translate("MainWindow", "06", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(6).setText(QtWidgets.QApplication.translate("MainWindow", "07", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(7).setText(QtWidgets.QApplication.translate("MainWindow", "08", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(8).setText(QtWidgets.QApplication.translate("MainWindow", "09", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(9).setText(QtWidgets.QApplication.translate("MainWindow", "10", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(10).setText(QtWidgets.QApplication.translate("MainWindow", "11", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(11).setText(QtWidgets.QApplication.translate("MainWindow", "12", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(12).setText(QtWidgets.QApplication.translate("MainWindow", "13", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(13).setText(QtWidgets.QApplication.translate("MainWindow", "14", None, -1))
-        self.tableWidget_FileList.verticalHeaderItem(14).setText(QtWidgets.QApplication.translate("MainWindow", "15", None, -1))
-        self.tableWidget_FileList.horizontalHeaderItem(0).setText(QtWidgets.QApplication.translate("MainWindow", "Ver.", None, -1))
-        self.tableWidget_FileList.horizontalHeaderItem(1).setText(QtWidgets.QApplication.translate("MainWindow", "UserName", None, -1))
-        self.tableWidget_FileList.horizontalHeaderItem(2).setText(QtWidgets.QApplication.translate("MainWindow", "Date..................................................", None, -1))
-       '''
+
+
+
+
         __sortingEnabled = self.tableWidget_FileList.isSortingEnabled()
         self.tableWidget_FileList.setSortingEnabled(False)
-        '''
-        self.tableWidget_FileList.item(0, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v009", None, -1))
-        self.tableWidget_FileList.item(0, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(0, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(1, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v008", None, -1))
-        self.tableWidget_FileList.item(1, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(1, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(2, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v007", None, -1))
-        self.tableWidget_FileList.item(2, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(2, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(3, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v006", None, -1))
-        self.tableWidget_FileList.item(3, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(3, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(4, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v005", None, -1))
-        self.tableWidget_FileList.item(4, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(4, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(5, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v004", None, -1))
-        self.tableWidget_FileList.item(5, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(5, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(6, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v003", None, -1))
-        self.tableWidget_FileList.item(6, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(6, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(7, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v002", None, -1))
-        self.tableWidget_FileList.item(7, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(7, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        self.tableWidget_FileList.item(8, 0).setText(QtWidgets.QApplication.translate("MainWindow", "v001", None, -1))
-        self.tableWidget_FileList.item(8, 1).setText(QtWidgets.QApplication.translate("MainWindow", "alpha", None, -1))
-        self.tableWidget_FileList.item(8, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
-        '''
+
         self.tableWidget_FileList.setSortingEnabled(__sortingEnabled)
 
 
@@ -336,26 +170,21 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(mod_MainWindow, self).__init__(parent)
         #self.QTITEM.ACTION.connect(self.MODDEF)
         self.setupUi(self)
-        
+
+        self.defineFont()
         
         self.initialItemBuild()
 
         self.branch_index = 0
-        self.assetName  = "anna"
-       # self.getExistBranchDict()
-      #  self.exportBranchJsonFile()
         
-  
-    #def self.MODDEF(self):asserName
-    
-    
-        #get initial asset branch dictionary
+        self.assetName  = "anna"
+
         self.pushButton_reNewBranchDict.clicked.connect(self.getExistBranchDict)
         
         self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
-        #self.pushButton_createNewBranch.clicked.connect(self.test)
 
-        self.pushButton_mergeToMaster.clicked.connect(self.test)
+
+        self.pushButton_mergeToMaster.clicked.connect(self.buildExistFileInfoTree)
         
         self.treeWidget_branches.itemClicked.connect(self.printOutBranchInfo)
         
@@ -363,6 +192,90 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
         self.getCurrentLevelList = []
+        
+        
+  #-----------------------------------upper are load startUp-------------------------------------------------------------------------------------------------------      
+        
+        
+        
+        
+    def buildExistFileInfoTree(self):
+        
+        currentProject = "//mcd-server/art_3d_project/3d_pipeline_test/shot/shot_02/lighting/"   
+        
+        scenesFileSearch = currentProject + "scenes"
+        
+        topLevelDirList = ['master']
+        branchPreDict = {"0":{"master":{}}}        
+        
+        print "check point 01"
+        
+        
+        #build topLevelDir List------------------------------------------------------------------
+        
+        for dir,path,file in os.walk(scenesFileSearch):
+            #print dir,path,file
+            allDir = dir.split(scenesFileSearch)[1]
+          #  print allDir
+            try:
+              #  print allDir.split("\\")[1]
+                if allDir.split("\\")[1] in topLevelDirList:
+                    pass
+                else:
+                    topLevelDirList.append(allDir.split("\\")[1])
+                
+            except:
+                pass
+    
+        #print "check point 02"
+
+       # print topLevelDirList
+        
+        #find topLevelDir Count ,searching real dir
+        
+        #build topLevelDir in full dictionary-----------------------------------------------------------
+        
+        
+        for i in range(0,len(topLevelDirList)):
+           # print i
+            branchPreDict.update({str(i):{topLevelDirList[i]:{}}})
+        
+        
+
+        print "check point 03"
+
+       # print topLevelDirList
+        for dir,path,file in os.walk(scenesFileSearch):
+            #print dir,path,file
+            allDir = dir.split(scenesFileSearch)[1]
+            try:
+                print allDir.split("\\")[1],allDir.split("\\")[2]
+            except:
+                pass
+            
+            #for i in range(0,len(topLevelDirList)):
+                
+              #  try:
+                #    print allDir#.split("\\")[2]
+                   # branchPreDict[str(i)][branchPreDict[str(i)].keys()[0]].update({allDir.split("\\")[2]:{}})
+               # except:
+                  #  pass
+                
+       # print branchPreDict
+                        
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     def initialItemBuild(self):
@@ -375,46 +288,84 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
        # self.loadExistFileInfo()
         
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
         
     #---------------Load Exist Branch Data From Dictionary Start-------------------------------------------------------------------------------------------------------
     def loadExistBranchData(self):
         print "initial all Tree Data"
-        self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-       # self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-      #  self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-       # self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-       # self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-       # self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-       # self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-       # self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-       # self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
-       # self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
-       # self.item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
-      #  self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-      #  self.item_1 = QtWidgets.QTreeWidgetItem(self.item_0)
-      #  self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
-      #  self.item_2 = QtWidgets.QTreeWidgetItem(self.item_1)
         
+        
+      
+        itemMaster = QtWidgets.QTreeWidgetItem(self.treeWidget_branches).setForeground(0,self.brushLevelOne)  #create contain master ,and define font color
+        
+         
+       # self.treeWidget_branches.setFont(self.fontLevelOne) #define font size
         self.treeWidget_branches.topLevelItem(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
-       # self.treeWidget_branches.topLevelItem(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01", None, -1))
-       # self.treeWidget_branches.topLevelItem(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_ext01", None, -1))
-       # self.treeWidget_branches.topLevelItem(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_01_ext02", None, -1))
-       # self.treeWidget_branches.topLevelItem(2).setText(0, QtWidgets.QApplication.translate("MainWindow", "branch_02", None, -1))
-       # self.treeWidget_branches.topLevelItem(3).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra", None, -1))
-      #  self.treeWidget_branches.topLevelItem(3).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_01", None, -1))
-      #  self.treeWidget_branches.topLevelItem(3).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02", None, -1))
-      #  self.treeWidget_branches.topLevelItem(3).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02_v1", None, -1))
-      #  self.treeWidget_branches.topLevelItem(3).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "extra_test_02_v2", None, -1))
-      #  self.treeWidget_branches.topLevelItem(4).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp", None, -1))
-      #  self.treeWidget_branches.topLevelItem(4).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_AO", None, -1))
-      #  self.treeWidget_branches.topLevelItem(4).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_lightPass", None, -1))
-      #  self.treeWidget_branches.topLevelItem(4).child(1).child(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_Key", None, -1))
-       # self.treeWidget_branches.topLevelItem(4).child(1).child(1).setText(0, QtWidgets.QApplication.translate("MainWindow", "temp_spec", None, -1))
+       # self.treeWidget_branches.setFont(self.fontLevelTwo)
+        self.treeWidget_branches.topLevelItem(0).setFont(0,self.fontLevelOne)#define font size
+
+       
+       
+       
+       
+       
        
        
     #---------------Load Exist Branch Data From Dictionary End-------------------------------------------------------------------------------------------------------
      
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    
@@ -465,6 +416,50 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                              '21':["projectName_assetClass_assetName_process_v021_alpha.mb","alpha","2017/03/28    10:48"]
                              }
         
+
+
+
+    def defineFont(self):
+                
+
+        self.fontLevelOne = QtGui.QFont()
+        self.fontLevelOne.setPointSize(13)
+        self.fontLevelOne.setWeight(75)
+        self.fontLevelOne.setBold(True)
+        self.fontLevelOne.setUnderline(True)
+
+
+        self.brushLevelOne = QtGui.QBrush(QtGui.QColor(247, 126, 128))
+        self.brushLevelOne.setStyle(QtCore.Qt.NoBrush)
+        
+
+        self.fontLevelTwo = QtGui.QFont()
+        self.fontLevelTwo.setPointSize(11)
+        self.fontLevelTwo.setWeight(75)
+        self.fontLevelTwo.setBold(0)
+        #self.fontLevelTwo.setItalic(True)
+        
+        self.brushLevelTwo = QtGui.QBrush(QtGui.QColor(170, 170, 255))
+        self.brushLevelTwo.setStyle(QtCore.Qt.NoBrush)
+
+        self.fontLevelThree = QtGui.QFont()
+        self.fontLevelThree.setPointSize(9)
+        self.fontLevelThree.setWeight(75)
+        self.fontLevelThree.setBold(True)
+
+        self.fontLevelThree.setItalic(True)
+        self.brushLevelThree = QtGui.QBrush(QtGui.QColor(100, 200, 100))
+        self.brushLevelThree.setStyle(QtCore.Qt.NoBrush)
+       # item_0.setForeground(0, brush)
+
+        self.fontLevelFour = QtGui.QFont()
+        self.fontLevelFour.setPointSize(9)
+        self.fontLevelFour.setWeight(75)
+        self.fontLevelFour.setBold(0)
+
+        self.fontLevelFour.setItalic(True)
+        self.brushLevelFour = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        self.brushLevelFour.setStyle(QtCore.Qt.NoBrush)
 
         
         
@@ -744,23 +739,26 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # create New Branch on Top Level ----------------------------------------------------------------------------------------------------------------------
     def createNewBranchTopLevel(self):      
         
-
+      #  self.defineFontLevelTwo()
         #self.newBranch = self.lineEdit_branchName.text()
         self.getNewBranchName()
-        print self.newBranch 
+     #   print self.newBranch 
      
         #self.creatrTreeItems()
         #print "new Branch" ,self.newBranch
-        
+
         ##create Top Level Branch  ,the same level as master
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches).setForeground(0,self.brushLevelTwo)
         self.topLayerBranchIndex =(self.treeWidget_branches.topLevelItemCount()-1)
-        print type(self.topLayerBranchIndex) , self.topLayerBranchIndex
+       # print type(self.topLayerBranchIndex) , self.topLayerBranchIndex
         
+
+        #self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setForeground(0,self.brushLevelTwo)
         self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setText(0,QtWidgets.QApplication.translate("MainWindow", "tempName", None, -1))
         self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setText(0,self.newBranch )
-        
-        
+  
+        self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setFont(0,self.fontLevelTwo) #define font size     
+
         
         
         
@@ -816,7 +814,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     
                     
                     print "create New 2nd Item"
-                    newSecBranchItem = QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex)).addChild(existLevelCount)  #build new item from index
+                    QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex)).setForeground(0,self.brushLevelThree)  #build new item from index
+
+                    self.treeWidget_branches.topLevelItem(topLevelIndex).child(existLevelCount).setFont(0,self.fontLevelThree)
+    
+
                 except:
                     #pass
                 
@@ -825,8 +827,6 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     
             self.treeWidget_branches.topLevelItem(topLevelIndex).child(existLevelCount).setText(0,self.newBranch)   #named the newItem , from typeIn line edit
 
-
-                
         elif len(self.fullItemIndex) == 2: # create 2nd Level Item under select item
             print "Create level 3 branch"
             print self.fullItemIndex
@@ -841,9 +841,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 print"check point C01"
                 try:
-
-                    newThirdBranchItem = QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex).child(secondLevelIndex)).addChild(existThirdLevelCount)  #build new item from index
-
+                    QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex).child(secondLevelIndex)).setForeground(0,self.brushLevelFour)  #set 4rd level brush
+                    self.treeWidget_branches.topLevelItem(topLevelIndex).child(secondLevelIndex).child(existThirdLevelCount).setFont(0,self.fontLevelFour)  #set 4rd level font
 
                 except:
                   #  pass
@@ -854,10 +853,6 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.treeWidget_branches.topLevelItem(topLevelIndex).child(secondLevelIndex).child(existThirdLevelCount).setText(0,self.newBranch)   #named the newItem , from typeIn line edit
 
 
-            
-           # existLevelCount = len(self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys())   # = child,secLevelIndex
-           # secItemList = self.branchDict[str(self.fullItemIndex[0])][itemSelect].keys()
-                
 
 
         else:

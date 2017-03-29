@@ -338,6 +338,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         
         
+        self.defineFont()
+        
         self.initialItemBuild()
 
         self.branch_index = 0
@@ -465,6 +467,39 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                              '21':["projectName_assetClass_assetName_process_v021_alpha.mb","alpha","2017/03/28    10:48"]
                              }
         
+
+
+
+    def defineFont(self):
+                
+       # item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        self.fontLevelOne = QtGui.QFont()
+        self.fontLevelOne.setPointSize(11)
+        self.fontLevelOne.setWeight(75)
+        self.fontLevelOne.setBold(True)
+        self.brushLevelOne = QtGui.QBrush(QtGui.QColor(247, 126, 128))
+        self.brushLevelOne.setStyle(QtCore.Qt.NoBrush)
+        #item_0.setForeground(0, brush)
+        #item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        
+        
+        self.fontLevelTwo = QtGui.QFont()
+        self.fontLevelTwo.setPointSize(10)
+        self.fontLevelTwo.setWeight(75)
+        self.fontLevelTwo.setBold(True)
+        self.brushLevelTwo = QtGui.QBrush(QtGui.QColor(23, 187, 255))
+        self.brushLevelTwo.setStyle(QtCore.Qt.NoBrush)
+        
+        
+        self.fontLevelThree = QtGui.QFont()
+        self.fontLevelThree.setPointSize(9)
+        self.fontLevelThree.setWeight(75)
+        self.fontLevelThree.setItalic(True)
+        self.brushLevelThree = QtGui.QBrush(QtGui.QColor(215, 255, 208))
+        self.brushLevelThree.setStyle(QtCore.Qt.NoBrush)
+       # item_0.setForeground(0, brush)
+
+
 
         
         

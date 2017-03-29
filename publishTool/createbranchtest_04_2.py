@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha.DESKTOP-1S1STEK/Documents/GitHub/ribGen/publishTool/createbranchtest_04_1.ui'
 #
-# Created: Wed Mar 29 10:18:25 2017
+# Created: Wed Mar 29 10:14:19 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -216,7 +216,6 @@ class Ui_MainWindow(object):
         icon1.addPixmap(QtGui.QPixmap("icons/submitB.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_submitFileImfo.setIcon(icon1)
         self.pushButton_submitFileImfo.setIconSize(QtCore.QSize(30, 30))
-        self.pushButton_submitFileImfo.setDefault(False)
         self.pushButton_submitFileImfo.setFlat(True)
         self.pushButton_submitFileImfo.setObjectName("pushButton_submitFileImfo")
         MainWindow.setCentralWidget(self.centralwidget)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha.DESKTOP-1S1STEK/Documents/GitHub/ribGen/publishTool/createbranchtest_04_1.ui'
 #
-# Created: Wed Mar 29 10:18:25 2017
+# Created: Wed Mar 29 10:18:29 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         self.pushButton_editFileInfo.setGeometry(QtCore.QRect(450, 330, 31, 31))
         self.pushButton_editFileInfo.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/editY.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("C:/Program Files/Autodesk/Maya2017/icons/editY.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_editFileInfo.setIcon(icon)
         self.pushButton_editFileInfo.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_editFileInfo.setAutoDefault(False)
@@ -213,7 +213,7 @@ class Ui_MainWindow(object):
         self.pushButton_submitFileImfo.setGeometry(QtCore.QRect(490, 330, 31, 31))
         self.pushButton_submitFileImfo.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons/submitB.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("C:/Program Files/Autodesk/Maya2017/icons/submitB.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_submitFileImfo.setIcon(icon1)
         self.pushButton_submitFileImfo.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_submitFileImfo.setDefault(False)

@@ -233,7 +233,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>7</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="sizeAdjustPolicy">
@@ -270,7 +270,7 @@
      <bool>false</bool>
     </attribute>
     <attribute name="verticalHeaderDefaultSectionSize">
-     <number>17</number>
+     <number>21</number>
     </attribute>
     <row>
      <property name="text">
@@ -715,7 +715,7 @@
    <widget class="QPushButton" name="pushButton_editFileInfo">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>450</x>
       <y>330</y>
       <width>31</width>
       <height>31</height>
@@ -726,12 +726,12 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>icons/pencil_and_paper-512.png</normaloff>icons/pencil_and_paper-512.png</iconset>
+      <normaloff>icons/editY.png</normaloff>icons/editY.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>20</width>
-      <height>20</height>
+      <width>30</width>
+      <height>30</height>
      </size>
     </property>
     <property name="autoDefault">
@@ -747,10 +747,10 @@
    <widget class="QPushButton" name="pushButton_submitFileImfo">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>334</y>
-      <width>21</width>
-      <height>21</height>
+      <x>490</x>
+      <y>330</y>
+      <width>31</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -758,13 +758,16 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>icons/submitpng.png</normaloff>icons/submitpng.png</iconset>
+      <normaloff>icons/submitB.png</normaloff>icons/submitB.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>22</width>
-      <height>22</height>
+      <width>30</width>
+      <height>30</height>
      </size>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
     <property name="flat">
      <bool>true</bool>
