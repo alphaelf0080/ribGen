@@ -1,0 +1,58 @@
+project structure description:
+
+
+assetBranch Process Step:
+
+check assetBranchFileInfo.json is exist
+
+	is exist  ---- update
+	not exist -- build file
+
+	
+
+
+
+
+
+
+projectName:
+
+	assets
+		character
+		vehicle
+		set
+		prop
+		other
+
+	shot
+		shot_01
+		shot_02
+		shot_03
+		.
+		.
+		.
+	global
+		projectStructure.json   -- projectName_Structure.json
+		\assets\assetName\
+					assetBranchFileInfo.json  -- assetName_process.json    #decript all branch and file information
+
+
+		\shot\shotName\
+					shotBranchFileInfo.json  -- shotName_process.json    #decript all branch and file information
+
+
+
+
+
+
+	publish
+	output
+	QC
+	reference
+
+
+
+
+userLocal:
+
+C:\Users\alpha\Documents\maya\2017\prefs\publishToolTemp.json     #record user sellection
