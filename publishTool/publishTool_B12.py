@@ -2709,7 +2709,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #define project Name
         #self.topLevelItem
         #self.projectName = "fish_battle_v02_cf"
-        self.projectName = "fish_hunter_v01"
+        self.projectName = "3d_pipeline_test"
 
         #define project topLevelDir
         #self.root="//mcd-server/art_3d_project/" + self.projectName     ## it should be //projects_location/   ,add '/' after end
