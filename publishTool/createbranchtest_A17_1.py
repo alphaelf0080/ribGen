@@ -189,7 +189,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.tableWidget_FileList.itemClicked.connect(self.printOutFileInfo)
         
-        self.pushButton_editFileInfo.clicked.connect(self.printOutProjectIngo)
+        self.pushButton_editFileInfo.clicked.connect(self.printOutProjectInfo)
 
         self.getCurrentLevelList = []
         self.initialItemBuild()
@@ -198,21 +198,39 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
   #-----------------------------------upper are load startUp-------------------------------------------------------------------------------------------------------      
         
    
-    def printOutProjectIngo(self):
+    def printOutProjectInfo(self):
         self.root = "//mcd-server/art_3d_project"
         self.project = "3d_pipeline_test"
-        self.assetClass =""
-        self.assetNow = "shot_02"
+        self.assetClass ="character"
+        self.assetNow = "shot_ex_01"
         self.processNow ="lighting"
+        self.isAsset = False
+        
         
         self.projectDescription()
         
+
+       
+        
+        
+       
+      
+        
         print self.shotProject
         print self.projectStructureName
+        print self.shotBranchFileStore
+        print self.shotRootDir
+        print self.shotBranchFileDir
         
+        
+   
+
+        
+
    
    
     def projectDescription(self):
+        print self.isAsset
         
         #self.root 
         #self.project 
@@ -230,8 +248,32 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         #projectStructure.json  -- projectName_Structure.json
         self.projectStructureName = self.projectGlobal + "/" + self.project+"_struction.json"
-        #shotBranchFileInfo.json  -- shotName_process.json
         
+        if self.isAsset == True:
+        #assetBranchFileInfo.json  -- assetName_process.json
+            self.assetBranchFileName = self.assetNow + "_" + self.processNow +".json"       #assetBranchFileStore FileName
+            self.assetRootDir = self.projectGlobal + "/" + "assets"
+            self.assetClassDir = self.assetRootDir + "/" + self.assetClass
+            self.assetBranchFileDir = self.assetClassDir + "/"+ self.assetNow #assetBranchFileStore Folder
+            self.assetBranchFileStore = self.assetBranchFileDir + "/" + self.assetBranchFileName    #export Path + fileName
+            try:
+                os.mkdir(self.assetRootDir)
+                os.mkdir(self.assetClassDir)
+                os.mkdir(self.assetBranchFileDir)
+            except:
+                pass
+            
+        else:
+        #shotBranchFileInfo.json  -- shotName_process.json
+            self.shotBranchFileName = self.assetNow + "_" + self.processNow +".json"        #shotBranchFileStore FileName
+            self.shotRootDir = self.projectGlobal + "/" + "shot"
+            self.shotBranchFileDir = self.shotRootDir + "/"+ self.assetNow # shotBranchFileStore Folder
+            self.shotBranchFileStore = self.shotBranchFileDir + "/" + self.shotBranchFileName    #export Path + fileName
+            try:
+                os.mkdir(self.shotRootDir)
+                os.mkdir(self.shotBranchFileDir)
+            except:
+                pass
        # try:
           #  os.mkdir(self.projectGlobal + "/" + self.assetNow)
        # except:
