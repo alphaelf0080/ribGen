@@ -199,10 +199,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
    
     def printOutProjectInfo(self):
-        self.root = "//mcd-server/art_3d_project"
+        self.root = "C:/mayaProjs"
         self.project = "3d_pipeline_test"
         self.assetClass ="character"
-        self.assetNow = "shot_ex_01"
+        self.assetNow = "shot_02"
         self.processNow ="lighting"
         self.isAsset = False
         
@@ -272,6 +272,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 os.mkdir(self.shotRootDir)
                 os.mkdir(self.shotBranchFileDir)
+                
             except:
                 pass
        # try:
@@ -285,8 +286,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def buildExistFileInfoTree(self):
         print "run buildExistFileInfoTree process         ------------start" 
         
-        currentProject = "//mcd-server/art_3d_project/3d_pipeline_test/shot/shot_02/lighting/"    #test project
-        #currentProject = "C:/mayaProjs/3d_pipeline_test/shot/shot_02/lighting/"
+        #currentProject = "//mcd-server/art_3d_project/3d_pipeline_test/shot/shot_02/lighting/"    #test project
+        currentProject = "C:/mayaProjs/3d_pipeline_test/shot/shot_02/lighting/"
         topLevelDirFileSearch = currentProject + "scenes"
 
         topLevelDirList = ['master']
@@ -364,7 +365,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         exportDate = json.dumps(self.branchPreDict, sort_keys=True , indent =4)
         #export json file
 
-        path = "//mcd-server/art_3d_project/3d_pipeline_test/global/"
+        path = "C:/mayaProjs/3d_pipeline_test/global/"
         fileName = "shot_02_lighting.json"
         
         
@@ -547,7 +548,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def defineFont(self):
                 
-        fontSizeAdj = 8
+        fontSizeAdj = 4
         self.fontLevelOne = QtGui.QFont()
         self.fontLevelOne.setPointSize((fontSizeAdj+4))
         self.fontLevelOne.setWeight(75)

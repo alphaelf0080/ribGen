@@ -15,47 +15,98 @@ import json , os
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(558, 577)
+        MainWindow.resize(582, 712)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.pushButton_createNewBranch = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_createNewBranch.setGeometry(QtCore.QRect(310, 450, 231, 41))
-        self.pushButton_createNewBranch.setObjectName("pushButton_createNewBranch")
-        self.lineEdit_branchName = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_branchName.setGeometry(QtCore.QRect(10, 450, 261, 41))
+        self.tabWidget_branch = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget_branch.setGeometry(QtCore.QRect(0, 0, 561, 691))
+        self.tabWidget_branch.setObjectName("tabWidget_branch")
+        self.tab_branch = QtWidgets.QWidget()
+        self.tab_branch.setObjectName("tab_branch")
+        self.lineEdit_branchName = QtWidgets.QLineEdit(self.tab_branch)
+        self.lineEdit_branchName.setGeometry(QtCore.QRect(10, 440, 261, 41))
         self.lineEdit_branchName.setText("")
         self.lineEdit_branchName.setObjectName("lineEdit_branchName")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(10, 420, 161, 21))
+        self.pushButton_editFileInfo = QtWidgets.QPushButton(self.tab_branch)
+        self.pushButton_editFileInfo.setGeometry(QtCore.QRect(450, 320, 31, 31))
+        self.pushButton_editFileInfo.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icons/editY.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_editFileInfo.setIcon(icon)
+        self.pushButton_editFileInfo.setIconSize(QtCore.QSize(30, 30))
+        self.pushButton_editFileInfo.setAutoDefault(False)
+        self.pushButton_editFileInfo.setDefault(False)
+        self.pushButton_editFileInfo.setFlat(True)
+        self.pushButton_editFileInfo.setObjectName("pushButton_editFileInfo")
+        self.pushButton_mergeToMaster = QtWidgets.QPushButton(self.tab_branch)
+        self.pushButton_mergeToMaster.setGeometry(QtCore.QRect(310, 500, 231, 41))
+        self.pushButton_mergeToMaster.setObjectName("pushButton_mergeToMaster")
+        self.pushButton_createNewBranch = QtWidgets.QPushButton(self.tab_branch)
+        self.pushButton_createNewBranch.setGeometry(QtCore.QRect(310, 440, 231, 41))
+        self.pushButton_createNewBranch.setObjectName("pushButton_createNewBranch")
+        self.textBrowser_BranchFileInfo = QtWidgets.QTextBrowser(self.tab_branch)
+        self.textBrowser_BranchFileInfo.setGeometry(QtCore.QRect(190, 160, 351, 151))
+        self.textBrowser_BranchFileInfo.setMidLineWidth(1)
+        self.textBrowser_BranchFileInfo.setTabChangesFocus(False)
+        self.textBrowser_BranchFileInfo.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
+        self.textBrowser_BranchFileInfo.setOpenExternalLinks(True)
+        self.textBrowser_BranchFileInfo.setObjectName("textBrowser_BranchFileInfo")
+        self.label = QtWidgets.QLabel(self.tab_branch)
+        self.label.setGeometry(QtCore.QRect(10, 410, 161, 21))
         self.label.setObjectName("label")
-        self.treeWidget_branches = QtWidgets.QTreeWidget(self.centralwidget)
-        self.treeWidget_branches.setGeometry(QtCore.QRect(10, 10, 171, 311))
+        self.treeWidget_branches = QtWidgets.QTreeWidget(self.tab_branch)
+        self.treeWidget_branches.setGeometry(QtCore.QRect(10, 0, 171, 311))
         self.treeWidget_branches.setAlternatingRowColors(False)
         self.treeWidget_branches.setAutoExpandDelay(1)
         self.treeWidget_branches.setAllColumnsShowFocus(True)
         self.treeWidget_branches.setHeaderHidden(True)
         self.treeWidget_branches.setExpandsOnDoubleClick(True)
         self.treeWidget_branches.setObjectName("treeWidget_branches")
-        
-
-
-
-
-
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setWeight(75)
+        font.setBold(True)
+        brush = QtGui.QBrush(QtGui.QColor(247, 126, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        item_0.setForeground(0, brush)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        font = QtGui.QFont()
+        font.setUnderline(True)
+        brush = QtGui.QBrush(QtGui.QColor(215, 255, 208))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        item_0.setForeground(0, brush)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        font = QtGui.QFont()
+        font.setItalic(True)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        font = QtGui.QFont()
+        font.setItalic(True)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        item_2 = QtWidgets.QTreeWidgetItem(item_1)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches)
         self.treeWidget_branches.header().setVisible(False)
         self.treeWidget_branches.header().setCascadingSectionResizes(False)
         self.treeWidget_branches.header().setDefaultSectionSize(311)
         self.treeWidget_branches.header().setMinimumSectionSize(4)
         self.treeWidget_branches.header().setSortIndicatorShown(False)
         self.treeWidget_branches.header().setStretchLastSection(False)
-        self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 510, 261, 41))
-        self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
-        self.pushButton_mergeToMaster = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_mergeToMaster.setGeometry(QtCore.QRect(310, 510, 231, 41))
-        self.pushButton_mergeToMaster.setObjectName("pushButton_mergeToMaster")
-        self.tableWidget_FileList = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget_FileList.setGeometry(QtCore.QRect(190, 10, 351, 151))
+        self.pushButton_submitFileImfo = QtWidgets.QPushButton(self.tab_branch)
+        self.pushButton_submitFileImfo.setGeometry(QtCore.QRect(490, 320, 31, 31))
+        self.pushButton_submitFileImfo.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("icons/submitB.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_submitFileImfo.setIcon(icon1)
+        self.pushButton_submitFileImfo.setIconSize(QtCore.QSize(30, 30))
+        self.pushButton_submitFileImfo.setDefault(False)
+        self.pushButton_submitFileImfo.setFlat(True)
+        self.pushButton_submitFileImfo.setObjectName("pushButton_submitFileImfo")
+        self.tableWidget_FileList = QtWidgets.QTableWidget(self.tab_branch)
+        self.tableWidget_FileList.setGeometry(QtCore.QRect(190, 0, 351, 151))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.tableWidget_FileList.setFont(font)
@@ -65,23 +116,20 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.tableWidget_FileList.setObjectName("tableWidget_FileList")
         self.tableWidget_FileList.setColumnCount(3)
-        self.tableWidget_FileList.setRowCount(99)
+        self.tableWidget_FileList.setRowCount(15)
 
-
-
-
-
-
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_FileList.setHorizontalHeaderItem(2, item)
         brush = QtGui.QBrush(QtGui.QColor(192, 231, 248))
         brush.setStyle(QtCore.Qt.NoBrush)
         item = QtWidgets.QTableWidgetItem()
         item.setForeground(brush)
-
-
-
-
-
-
+ 
+        item = QtWidgets.QTableWidgetItem()
         self.tableWidget_FileList.setItem(10, 1, item)
         self.tableWidget_FileList.horizontalHeader().setVisible(False)
         self.tableWidget_FileList.horizontalHeader().setCascadingSectionResizes(False)
@@ -91,65 +139,101 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.verticalHeader().setVisible(False)
         self.tableWidget_FileList.verticalHeader().setCascadingSectionResizes(False)
         self.tableWidget_FileList.verticalHeader().setDefaultSectionSize(21)
-        self.textBrowser_BranchFileInfo = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser_BranchFileInfo.setGeometry(QtCore.QRect(190, 170, 351, 151))
-        self.textBrowser_BranchFileInfo.setMidLineWidth(1)
-        self.textBrowser_BranchFileInfo.setTabChangesFocus(False)
-        self.textBrowser_BranchFileInfo.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
-        self.textBrowser_BranchFileInfo.setOpenExternalLinks(True)
-        self.textBrowser_BranchFileInfo.setObjectName("textBrowser_BranchFileInfo")
-        self.pushButton_editFileInfo = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_editFileInfo.setGeometry(QtCore.QRect(450, 330, 31, 31))
-        self.pushButton_editFileInfo.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Program Files/Autodesk/Maya2017/icons/editY.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_editFileInfo.setIcon(icon)
-        self.pushButton_editFileInfo.setIconSize(QtCore.QSize(30, 30))
-        self.pushButton_editFileInfo.setAutoDefault(False)
-        self.pushButton_editFileInfo.setDefault(False)
-        self.pushButton_editFileInfo.setFlat(True)
-        self.pushButton_editFileInfo.setObjectName("pushButton_editFileInfo")
-        self.pushButton_submitFileImfo = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_submitFileImfo.setGeometry(QtCore.QRect(490, 330, 31, 31))
-        self.pushButton_submitFileImfo.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:/Program Files/Autodesk/Maya2017/icons/submitB.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_submitFileImfo.setIcon(icon1)
-        self.pushButton_submitFileImfo.setIconSize(QtCore.QSize(30, 30))
-        self.pushButton_submitFileImfo.setDefault(False)
-        self.pushButton_submitFileImfo.setFlat(True)
-        self.pushButton_submitFileImfo.setObjectName("pushButton_submitFileImfo")
+        self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.tab_branch)
+        self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 500, 261, 41))
+        self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
+        self.tabWidget_branch.addTab(self.tab_branch, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.label_optionPage_projDescription.setFont(font)
+        self.label_optionPage_projDescription = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_projDescription.setGeometry(QtCore.QRect(30, 40, 130, 16))
+        self.label_optionPage_projDescription.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_projDescription.setObjectName("label_optionPage_projDescription")
+        self.lineEdit_optionPage_workProj_6 = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_workProj_6.setGeometry(QtCore.QRect(170, 230, 351, 20))
+        self.lineEdit_optionPage_workProj_6.setObjectName("lineEdit_optionPage_workProj_6")
+        self.label_optionPage_tempA = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_tempA.setGeometry(QtCore.QRect(30, 200, 130, 16))
+        self.label_optionPage_tempA.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_tempA.setObjectName("label_optionPage_tempA")
+        self.lineEdit_optionPage_projDescription = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_projDescription.setGeometry(QtCore.QRect(170, 40, 351, 20))
+        self.lineEdit_optionPage_projDescription.setObjectName("lineEdit_optionPage_projDescription")
+        self.lineEdit_optionPage_currentUser = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_currentUser.setGeometry(QtCore.QRect(170, 140, 351, 20))
+        self.lineEdit_optionPage_currentUser.setObjectName("lineEdit_optionPage_currentUser")
+        self.label_optionPage_tempB = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_tempB.setGeometry(QtCore.QRect(30, 230, 130, 16))
+        self.label_optionPage_tempB.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_tempB.setObjectName("label_optionPage_tempB")
+        self.label_optionPage_userPref = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_userPref.setGeometry(QtCore.QRect(30, 170, 130, 16))
+        self.label_optionPage_userPref.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_userPref.setObjectName("label_optionPage_userPref")
+        self.lineEdit_optionPage_branchFilePos = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_branchFilePos.setGeometry(QtCore.QRect(170, 110, 351, 20))
+        self.lineEdit_optionPage_branchFilePos.setObjectName("lineEdit_optionPage_branchFilePos")
+        self.lineEdit_optionPage_userPref = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_userPref.setGeometry(QtCore.QRect(170, 170, 351, 20))
+        self.lineEdit_optionPage_userPref.setObjectName("lineEdit_optionPage_userPref")
+        self.label_optionPage_User = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_User.setGeometry(QtCore.QRect(30, 140, 130, 16))
+        self.label_optionPage_User.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_User.setObjectName("label_optionPage_User")
+        self.label_optionPage_workProj = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_workProj.setGeometry(QtCore.QRect(30, 80, 130, 16))
+        self.label_optionPage_workProj.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_workProj.setObjectName("label_optionPage_workProj")
+        self.lineEdit_optionPage_workProj = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_workProj.setGeometry(QtCore.QRect(170, 80, 351, 20))
+        self.lineEdit_optionPage_workProj.setObjectName("lineEdit_optionPage_workProj")
+        self.lineEdit_optionPage_workProj_5 = QtWidgets.QLineEdit(self.tab_2)
+        self.lineEdit_optionPage_workProj_5.setGeometry(QtCore.QRect(170, 200, 351, 20))
+        self.lineEdit_optionPage_workProj_5.setObjectName("lineEdit_optionPage_workProj_5")
+        self.label_optionPage_branchFileInfo = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_branchFileInfo.setGeometry(QtCore.QRect(30, 110, 130, 16))
+        self.label_optionPage_branchFileInfo.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_branchFileInfo.setObjectName("label_optionPage_branchFileInfo")
+        self.tabWidget_branch.addTab(self.tab_2, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
+        self.tabWidget_branch.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "MainWindow", None, -1))
+        self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
         self.pushButton_createNewBranch.setText(QtWidgets.QApplication.translate("MainWindow", "new Branch", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("MainWindow", "Branch Name", None, -1))
         self.treeWidget_branches.headerItem().setText(0, QtWidgets.QApplication.translate("MainWindow", "branch Info", None, -1))
         __sortingEnabled = self.treeWidget_branches.isSortingEnabled()
         self.treeWidget_branches.setSortingEnabled(False)
-
-
-
-
+     
         self.treeWidget_branches.setSortingEnabled(__sortingEnabled)
-        
-        self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
-        self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
-
-
-
-
+    
+        self.tableWidget_FileList.horizontalHeaderItem(0).setText(QtWidgets.QApplication.translate("MainWindow", "Ver.", None, -1))
+        self.tableWidget_FileList.horizontalHeaderItem(1).setText(QtWidgets.QApplication.translate("MainWindow", "UserName", None, -1))
+        self.tableWidget_FileList.horizontalHeaderItem(2).setText(QtWidgets.QApplication.translate("MainWindow", "Date..................................................", None, -1))
         __sortingEnabled = self.tableWidget_FileList.isSortingEnabled()
         self.tableWidget_FileList.setSortingEnabled(False)
 
         self.tableWidget_FileList.setSortingEnabled(__sortingEnabled)
+        self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
+        self.tabWidget_branch.setTabText(self.tabWidget_branch.indexOf(self.tab_branch), QtWidgets.QApplication.translate("MainWindow", "branch Edit", None, -1))
+        self.label_optionPage_projDescription.setText(QtWidgets.QApplication.translate("MainWindow", "project Description:", None, -1))
+        self.label_optionPage_tempA.setText(QtWidgets.QApplication.translate("MainWindow", "temp_A:", None, -1))
+        self.label_optionPage_tempB.setText(QtWidgets.QApplication.translate("MainWindow", "temp_B:", None, -1))
+        self.label_optionPage_userPref.setText(QtWidgets.QApplication.translate("MainWindow", "User Pref:", None, -1))
+        self.label_optionPage_User.setText(QtWidgets.QApplication.translate("MainWindow", "current User:", None, -1))
+        self.label_optionPage_workProj.setText(QtWidgets.QApplication.translate("MainWindow", "working Projsct :", None, -1))
+        self.label_optionPage_branchFileInfo.setText(QtWidgets.QApplication.translate("MainWindow", "branch File Info position:", None, -1))
+        self.tabWidget_branch.setTabText(self.tabWidget_branch.indexOf(self.tab_2), QtWidgets.QApplication.translate("MainWindow", "option Edit", None, -1))
+
 
 
 
@@ -172,57 +256,141 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.defineFont()
+        self.printOutProjectInfo()
         
-        self.initialItemBuild()
-
         self.branch_index = 0
         
         self.assetName  = "anna"
-
+        self.branchDict={"0":{"master":{}}} 
         self.pushButton_reNewBranchDict.clicked.connect(self.getExistBranchDict)
         
         self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
 
 
-        self.pushButton_mergeToMaster.clicked.connect(self.buildExistFileInfoTree)
+        self.pushButton_mergeToMaster.clicked.connect(self.buildTreeFromExistFileData)
         
         self.treeWidget_branches.itemClicked.connect(self.printOutBranchInfo)
         
         self.tableWidget_FileList.itemClicked.connect(self.printOutFileInfo)
-
+        
+        self.pushButton_editFileInfo.clicked.connect(self.printOutProjectInfo)
 
         self.getCurrentLevelList = []
-        
+        self.initialItemBuild()
+
         
   #-----------------------------------upper are load startUp-------------------------------------------------------------------------------------------------------      
         
+   
+    def printOutProjectInfo(self):
+        self.root = "C:/mayaProjs"
+        self.project = "3d_pipeline_test"
+        self.assetClass ="character"
+        self.assetNow = "shot_02"
+        self.processNow ="lighting"
+        self.isAsset = False
+        
+        
+        self.projectDescription()
+        
+
+       
+        
+        
+       
+      
+        
+        print "workProject", self.workProject
+        print "project Structure",self.projectStructureName
+        print "Branch File Store",self.shotBranchFileStore
+        #print "shot Root Dir",self.shotRootDir
+        print "Export brancg File Dir",self.branchFileStore
+        
+        
+   
+
+        
+
+   
+   
+    def projectDescription(self):
+        print self.isAsset
+        
+        #self.root 
+        #self.project 
+        #self.assetClass 
+        #self.processNow
+        self.assetName = "assets" + "/" + self.assetClass + "/" + self.assetNow
+        self.shotName = "shot"+"/"+ self.assetNow
+        
+        
+        self.assetProject = self.root + "/" + self.project + "/" + self.assetName + "/" + self.processNow
+        self.workProject = self.root + "/" + self.project + "/" + self.shotName + "/" + self.processNow
+        self.projectGlobal = self.root + "/" + self.project + "/" +"global"
+        
+        #print self.shotProject
+        
+        #projectStructure.json  -- projectName_Structure.json
+        self.projectStructureName = self.projectGlobal + "/" + self.project+"_struction.json"
+        
+        if self.isAsset == True:
+        #assetBranchFileInfo.json  -- assetName_process.json
+            self.assetBranchFileName = self.assetNow + "_" + self.processNow +".json"       #assetBranchFileStore FileName
+            self.assetRootDir = self.projectGlobal + "/" + "assets"
+            self.assetClassDir = self.assetRootDir + "/" + self.assetClass
+            self.assetBranchFileDir = self.assetClassDir + "/"+ self.assetNow #assetBranchFileStore Folder
+            self.assetBranchFileStore = self.assetBranchFileDir + "/" + self.assetBranchFileName    #export Path + fileName
+
+            if os.path.isdir(self.assetBranchFileDir) == True:
+                pass
+            else:
+                os.mkdir(self.assetBranchFileDir)
+                
+            self.branchFileStore = self.assetBranchFileStore
+
+       
+            
+        else:
+        #shotBranchFileInfo.json  -- shotName_process.json
+            self.shotBranchFileName = self.assetNow + "_" + self.processNow +".json"        #shotBranchFileStore FileName
+            self.shotRootDir = self.projectGlobal + "/" + "shot"
+            self.shotBranchFileDir = self.shotRootDir + "/"+ self.assetNow # shotBranchFileStore Folder
+            self.shotBranchFileStore = self.shotBranchFileDir + "/" + self.shotBranchFileName    #export Path + fileName
+          #  
+            if os.path.isdir(self.shotBranchFileDir) == True:
+                pass
+            else:
+                os.mkdir(self.shotBranchFileDir)
+                
+            self.branchFileStore = self.shotBranchFileStore
+                
+                
+       # try:
+          #  os.mkdir(self.projectGlobal + "/" + self.assetNow)
+       # except:
+          #  pass
+      
         
         
         
     def buildExistFileInfoTree(self):
+        print "run buildExistFileInfoTree process         ------------start" 
         
-        #currentProject = "//mcd-server/art_3d_project/3d_pipeline_test/shot/shot_02/lighting/" 
-        
-        currentProject="C:/Users/alpha/Documents/GitHub/ribGen/publishTool/3d_pipeline_test/shot/shot_02/lighting/" 
-          
-        
-        scenesFileSearch = currentProject + "scenes"
-        
+        #currentProject = "//mcd-server/art_3d_project/3d_pipeline_test/shot/shot_02/lighting/"    #test project
+        print "self.workProject",self.workProject
+        topLevelDirFileSearch = self.workProject +'/'+ "scenes"
+
         topLevelDirList = ['master']
         branchPreDict = {"0":{"master":{}}}        
-        
-        print "check point 01"
-        
-        print scenesFileSearch
-        
+
         #build topLevelDir List------------------------------------------------------------------
-        
-        for dir,path,file in os.walk(scenesFileSearch):
-            print dir,path,file
-            allDir = dir.split(scenesFileSearch)[1]
-            print allDir
+
+        for dir,path,file in os.walk(topLevelDirFileSearch):
+
+            allDir = dir.split(topLevelDirFileSearch)[1]
+
             try:
-              #  print allDir.split("\\")[1]
+
                 if allDir.split("\\")[1] in topLevelDirList:
                     pass
                 else:
@@ -230,57 +398,81 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 
             except:
                 pass
-    
-        #print "check point 02"
 
-       # print topLevelDirList
-        
-        #find topLevelDir Count ,searching real dir
-        
-        #build topLevelDir in full dictionary-----------------------------------------------------------
-        
-        
+
+
         for i in range(0,len(topLevelDirList)):
            # print i
             branchPreDict.update({str(i):{topLevelDirList[i]:{}}})
-        
-        
 
-        print "check point 03"
-
-       # print topLevelDirList
-        for dir,path,file in os.walk(scenesFileSearch):
-            #print dir,path,file
-            allDir = dir.split(scenesFileSearch)[1]
-            try:
-                print allDir.split("\\")[1],allDir.split("\\")[2]
-            except:
-                pass
+        #------analyze 2nd level dir and files-------------------
+        #----------1.for i in branchPreDict.keys(): get search folder from branchPreDict dictionary, make sure index and branch name match
+        #-------------2.for secLevelItem in os.listdir(secLevelDirSearch):, update 2nd level item into branchPreDict
+        #----------------3 for thirdLevelItem in os.listdir(thirdLevelDirSearch):, update 3rd level item into branchPreDict
+        #--------------------4. for fourLevelItem in os.listdir(fourLevelDirSearch): update 4th level item into branchPreDict ,only folder
+        #--------------os.path.isdir(path),check the path is folder or file
+        for i in branchPreDict.keys():
+            secLevelDirSearch = topLevelDirFileSearch+ '/' + branchPreDict[i].keys()[0]  
             
-            #for i in range(0,len(topLevelDirList)):
+            branchPreDict[i][branchPreDict[i].keys()[0]].update({'folder':{}})
+            branchPreDict[i][branchPreDict[i].keys()[0]].update({'file':{}})
+            for secLevelItem in os.listdir(secLevelDirSearch):
+                thirdLevelDirSearch = topLevelDirFileSearch+ '/' + branchPreDict[i].keys()[0]+'/'+ secLevelItem       
+                if os.path.isdir(thirdLevelDirSearch) == True:
+                    branchPreDict[i][branchPreDict[i].keys()[0]]['folder'].update({secLevelItem:{}})
+                    
+                    
+                else:
+                    branchPreDict[i][branchPreDict[i].keys()[0]]['file'].update({secLevelItem:[]})
+
                 
-              #  try:
-                #    print allDir#.split("\\")[2]
-                   # branchPreDict[str(i)][branchPreDict[str(i)].keys()[0]].update({allDir.split("\\")[2]:{}})
-               # except:
-                  #  pass
                 
-       # print branchPreDict
+                if os.path.isdir(thirdLevelDirSearch) == True:
+                    branchPreDict[i][branchPreDict[i].keys()[0]]['folder'][secLevelItem].update({'folder':{}})
+                    branchPreDict[i][branchPreDict[i].keys()[0]]['folder'][secLevelItem].update({'file':{}})
+                    
+                    for thirdLevelItem in os.listdir(thirdLevelDirSearch):
+
+                        fourLevelDirSearch = thirdLevelDirSearch +'/'+ thirdLevelItem
+
                         
-            
+                        if os.path.isdir(fourLevelDirSearch) == True:
+                            branchPreDict[i][branchPreDict[i].keys()[0]]['folder'][secLevelItem]['folder'].update({thirdLevelItem:{}})
+                            branchPreDict[i][branchPreDict[i].keys()[0]]['folder'][secLevelItem]['folder'][thirdLevelItem].update({'file':{}})
+                        else:
+                            branchPreDict[i][branchPreDict[i].keys()[0]]['folder'][secLevelItem]['file'].update({thirdLevelItem:[]})   
 
+                            
+                        if os.path.isdir(fourLevelDirSearch) == True:
+                            for fourLevelItem in os.listdir(fourLevelDirSearch):
+                                branchPreDict[i][branchPreDict[i].keys()[0]]['folder'][secLevelItem]['folder'][thirdLevelItem]['file'].update({fourLevelItem:[]}) 
+                            
+                                        
+
+
+                
+        self.branchPreDict = branchPreDict
+        exportDate = json.dumps(self.branchPreDict, sort_keys=True , indent =4)
+        #export json file
+        print "--------------",self.branchFileStore
+       # path = "C:/mayaProjs/3d_pipeline_test/global/"
+       # fileName = "shot_02_lighting.json"
+        
+        
+        #storeFileName = path + fileName
+        storeFile = open(self.branchFileStore,'w')
+        storeFile.write(exportDate)
+        
+        
+        storeFile.close
         
         
         
         
         
-        
-        
-        
-        
-        
-        
-        
+        print "run buildExistFileInfoTree process         ------------End" 
+
+
         
     def initialItemBuild(self):
         
@@ -288,10 +480,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.branchDict={"0":{"master":{}}}    #default Master Item
         
-        self.loadExistBranchData()
-        
-       # self.loadExistFileInfo()
-        
+        self.buildExistFileInfoTree()
+        self.buildTreeFromExistFileData()
     
     
     
@@ -334,45 +524,67 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
     #---------------Load Exist Branch Data From Dictionary Start-------------------------------------------------------------------------------------------------------
-    def loadExistBranchData(self):
+    def buildTreeFromExistFileData(self):
+        #--------build Tree from Exist folders and files--------------------
+        #----------1. define default ,master, that should be exist------------
+        #----------2.get file info tree
+        #----------3.for topLevelIndex in range(1,topLevelIndexCount): build top Level items 
+        #----------4.for topLevelIndex in range(0,topLevelIndexCount): build sec Level items 
+        #----------5. build 2nd level item in treeWidget    
+        #----------6. build 3rd level item in treeWidget    
+
         print "initial all Tree Data"
-        
+         
+
         
       
-        itemMaster = QtWidgets.QTreeWidgetItem(self.treeWidget_branches).setForeground(0,self.brushLevelOne)  #create contain master ,and define font color
+        QtWidgets.QTreeWidgetItem(self.treeWidget_branches).setForeground(0,self.brushLevelOne)  #create contain master ,and define font color
         
-         
-       # self.treeWidget_branches.setFont(self.fontLevelOne) #define font size
+        #1.default exist , master should exist in top of treeWidget
         self.treeWidget_branches.topLevelItem(0).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
-       # self.treeWidget_branches.setFont(self.fontLevelTwo)
         self.treeWidget_branches.topLevelItem(0).setFont(0,self.fontLevelOne)#define font size
 
-       
-       
-       
-       
-       
-       
+        #2.get file info tree
+        topLevelIndexStringList = sorted(self.branchPreDict.keys())
+        topLevelIndexCount = len(topLevelIndexStringList) #get topLevelIndex 
+        
+        #3.for topLevelIndex in range(1,topLevelIndexCount): build top Level items 
+        for topLevelIndex in range(1,topLevelIndexCount):
+            QtWidgets.QTreeWidgetItem(self.treeWidget_branches).setForeground(0,self.brushLevelTwo)
+            self.treeWidget_branches.topLevelItem(topLevelIndex).setText(0, QtWidgets.QApplication.translate("MainWindow", "master", None, -1))
+            self.treeWidget_branches.topLevelItem(topLevelIndex).setText(0,self.branchPreDict[str(topLevelIndex)].keys()[0])
+            self.treeWidget_branches.topLevelItem(topLevelIndex).setFont(0,self.fontLevelTwo)
+
+        #4.for topLevelIndex in range(0,topLevelIndexCount): build sec Level items 
+        for topLevelIndex in range(0,topLevelIndexCount):
+            topLevelDirDict = self.branchPreDict[str(topLevelIndex)][self.branchPreDict[str(topLevelIndex)].keys()[0]]
+            secLevelDirList = topLevelDirDict['folder'].keys()
+            secLevelDirCount = len(secLevelDirList)
+
+
+        #5. build 2nd level item in treeWidget    
+            for secLevelItemIndex in range(0,secLevelDirCount):
+                QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex)).setForeground(0,self.brushLevelThree)  #build new item from index
+
+                self.treeWidget_branches.topLevelItem(topLevelIndex).child(secLevelItemIndex).setFont(0,self.fontLevelThree)
+                self.treeWidget_branches.topLevelItem(topLevelIndex).child(secLevelItemIndex).setText(0,secLevelDirList[secLevelItemIndex])
+
+                thirdLevelDirList = topLevelDirDict['folder'][secLevelDirList[secLevelItemIndex]]['folder'].keys()
+                thirdLevelDirCount = len(thirdLevelDirList)
+                #6. build 3rd level item in treeWidget   
+                
+                for thirdLevelItemIndex in range(0,thirdLevelDirCount):
+                    QtWidgets.QTreeWidgetItem(self.treeWidget_branches.topLevelItem(topLevelIndex).child(secLevelItemIndex)).setForeground(0,self.brushLevelFour)  #set 4rd level brush
+                    self.treeWidget_branches.topLevelItem(topLevelIndex).child(secLevelItemIndex).child(thirdLevelItemIndex).setFont(0,self.fontLevelFour)  #set 4rd level font
+                    self.treeWidget_branches.topLevelItem(topLevelIndex).child(secLevelItemIndex).child(thirdLevelItemIndex).setText(0,thirdLevelDirList[thirdLevelItemIndex])   #named the newItem , from typeIn line edit
        
     #---------------Load Exist Branch Data From Dictionary End-------------------------------------------------------------------------------------------------------
      
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
+
+
+
+
     #---------------Load Exist File Information From Dictionary Start-------------------------------------------------------------------------------------------------------
     
     def loadExistFileInfo(self):
@@ -425,9 +637,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def defineFont(self):
                 
-
+        fontSizeAdj = 4
         self.fontLevelOne = QtGui.QFont()
-        self.fontLevelOne.setPointSize(13)
+        self.fontLevelOne.setPointSize((fontSizeAdj+4))
         self.fontLevelOne.setWeight(75)
         self.fontLevelOne.setBold(True)
         self.fontLevelOne.setUnderline(True)
@@ -438,7 +650,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
 
         self.fontLevelTwo = QtGui.QFont()
-        self.fontLevelTwo.setPointSize(11)
+        self.fontLevelTwo.setPointSize(fontSizeAdj+2)
         self.fontLevelTwo.setWeight(75)
         self.fontLevelTwo.setBold(0)
         #self.fontLevelTwo.setItalic(True)
@@ -447,7 +659,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.brushLevelTwo.setStyle(QtCore.Qt.NoBrush)
 
         self.fontLevelThree = QtGui.QFont()
-        self.fontLevelThree.setPointSize(9)
+        self.fontLevelThree.setPointSize(fontSizeAdj+1)
         self.fontLevelThree.setWeight(75)
         self.fontLevelThree.setBold(True)
 
@@ -457,7 +669,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
        # item_0.setForeground(0, brush)
 
         self.fontLevelFour = QtGui.QFont()
-        self.fontLevelFour.setPointSize(9)
+        self.fontLevelFour.setPointSize(fontSizeAdj+1)
         self.fontLevelFour.setWeight(75)
         self.fontLevelFour.setBold(0)
 
@@ -517,7 +729,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
        # print "gggggggggggggggg"
         self.textBrowser_BranchFileInfo.setText("sssssssssssss")
         
-        self.treeWidget_branches.expandAll()
+        #self.treeWidget_branches.expandAll()
 
 
 
@@ -737,6 +949,28 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         
         except:
             pass
+            
+            
+    def updateAssetBranchFileInfo(self,levelList):
+        print "update assetBranchFileInfo.json"
+        path = "C:/mayaProjs/3d_pipeline_test/global/"
+        fileName = "shot_02_lighting.json"
+        storeFileName = path + fileName
+        #storeFile = open(storeFileName,'r')
+        
+        
+        
+        #storeFile.close
+        
+        
+        
+       # fileName = "C:/mayaProjs/3d_pipeline_test/global/shot_02_lighting.json"
+
+        #with open(fileName, 'r') as f:
+    
+       # data = json.load(f)
+        
+        
 
 
 
@@ -763,6 +997,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
   
         self.treeWidget_branches.topLevelItem(self.topLayerBranchIndex).setFont(0,self.fontLevelTwo) #define font size     
 
+        
+        #update assetBranchFileInfo.json
         
         
         
@@ -1084,6 +1320,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
 
+        
+        
             
     def exportBranchJsonFile(self):  
         
