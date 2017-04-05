@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_branch">
      <attribute name="title">
@@ -816,7 +816,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_optionPage_tempA">
+     <widget class="QLabel" name="label_optionPage_showFileType">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -831,7 +831,7 @@
        </font>
       </property>
       <property name="text">
-       <string>temp_A:</string>
+       <string>show File Type:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -960,7 +960,7 @@
        <bool>true</bool>
       </property>
       <property name="plainText">
-       <string>sssssffff</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="plainTextEdit_optionPage_workProj">
@@ -1035,7 +1035,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEdit_optionPage_tempA">
+     <widget class="QPlainTextEdit" name="plainTextEdit_optionPage_showFileType">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -1051,6 +1051,9 @@
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+      <property name="plainText">
+       <string>ma,mb,rib,ass,zip</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="plainTextEdit_optionPage_tempB">

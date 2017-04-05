@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/publishTool/publishtooladv_01.ui'
 #
-# Created: Sun Apr 02 23:20:40 2017
+# Created: Wed Apr 05 22:45:35 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -235,13 +235,13 @@ class Ui_MainWindow(object):
         self.label_optionPage_projDescription.setFont(font)
         self.label_optionPage_projDescription.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_optionPage_projDescription.setObjectName("label_optionPage_projDescription")
-        self.label_optionPage_tempA = QtWidgets.QLabel(self.tab_2)
-        self.label_optionPage_tempA.setGeometry(QtCore.QRect(30, 340, 130, 16))
+        self.label_optionPage_showFileType = QtWidgets.QLabel(self.tab_2)
+        self.label_optionPage_showFileType.setGeometry(QtCore.QRect(30, 340, 130, 16))
         font = QtGui.QFont()
         font.setPointSize(6)
-        self.label_optionPage_tempA.setFont(font)
-        self.label_optionPage_tempA.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_optionPage_tempA.setObjectName("label_optionPage_tempA")
+        self.label_optionPage_showFileType.setFont(font)
+        self.label_optionPage_showFileType.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_optionPage_showFileType.setObjectName("label_optionPage_showFileType")
         self.label_optionPage_tempB = QtWidgets.QLabel(self.tab_2)
         self.label_optionPage_tempB.setGeometry(QtCore.QRect(30, 390, 130, 16))
         font = QtGui.QFont()
@@ -283,6 +283,7 @@ class Ui_MainWindow(object):
         font.setPointSize(6)
         self.plainTextEdit_optionPage_projDescription.setFont(font)
         self.plainTextEdit_optionPage_projDescription.setReadOnly(True)
+        self.plainTextEdit_optionPage_projDescription.setPlainText("")
         self.plainTextEdit_optionPage_projDescription.setObjectName("plainTextEdit_optionPage_projDescription")
         self.plainTextEdit_optionPage_workProj = QtWidgets.QPlainTextEdit(self.tab_2)
         self.plainTextEdit_optionPage_workProj.setGeometry(QtCore.QRect(170, 100, 351, 50))
@@ -312,13 +313,13 @@ class Ui_MainWindow(object):
         self.plainTextEdit_optionPage_userPref.setFont(font)
         self.plainTextEdit_optionPage_userPref.setReadOnly(True)
         self.plainTextEdit_optionPage_userPref.setObjectName("plainTextEdit_optionPage_userPref")
-        self.plainTextEdit_optionPage_tempA = QtWidgets.QPlainTextEdit(self.tab_2)
-        self.plainTextEdit_optionPage_tempA.setGeometry(QtCore.QRect(170, 340, 351, 40))
+        self.plainTextEdit_optionPage_showFileType = QtWidgets.QPlainTextEdit(self.tab_2)
+        self.plainTextEdit_optionPage_showFileType.setGeometry(QtCore.QRect(170, 340, 351, 40))
         font = QtGui.QFont()
         font.setPointSize(6)
-        self.plainTextEdit_optionPage_tempA.setFont(font)
-        self.plainTextEdit_optionPage_tempA.setReadOnly(True)
-        self.plainTextEdit_optionPage_tempA.setObjectName("plainTextEdit_optionPage_tempA")
+        self.plainTextEdit_optionPage_showFileType.setFont(font)
+        self.plainTextEdit_optionPage_showFileType.setReadOnly(True)
+        self.plainTextEdit_optionPage_showFileType.setObjectName("plainTextEdit_optionPage_showFileType")
         self.plainTextEdit_optionPage_tempB = QtWidgets.QPlainTextEdit(self.tab_2)
         self.plainTextEdit_optionPage_tempB.setGeometry(QtCore.QRect(170, 390, 351, 40))
         font = QtGui.QFont()
@@ -333,7 +334,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget_branch.setCurrentIndex(1)
+        self.tabWidget_branch.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -407,13 +408,13 @@ class Ui_MainWindow(object):
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
         self.tabWidget_branch.setTabText(self.tabWidget_branch.indexOf(self.tab_branch), QtWidgets.QApplication.translate("MainWindow", "branch Edit", None, -1))
         self.label_optionPage_projDescription.setText(QtWidgets.QApplication.translate("MainWindow", "project Description:", None, -1))
-        self.label_optionPage_tempA.setText(QtWidgets.QApplication.translate("MainWindow", "temp_A:", None, -1))
+        self.label_optionPage_showFileType.setText(QtWidgets.QApplication.translate("MainWindow", "show File Type:", None, -1))
         self.label_optionPage_tempB.setText(QtWidgets.QApplication.translate("MainWindow", "temp_B:", None, -1))
         self.label_optionPage_userPref.setText(QtWidgets.QApplication.translate("MainWindow", "User Pref:", None, -1))
         self.label_optionPage_User.setText(QtWidgets.QApplication.translate("MainWindow", "current User:", None, -1))
         self.label_optionPage_workProj.setText(QtWidgets.QApplication.translate("MainWindow", "working Projsct :", None, -1))
         self.label_optionPage_branchFileInfo.setText(QtWidgets.QApplication.translate("MainWindow", "branch File Info position:", None, -1))
-        self.plainTextEdit_optionPage_projDescription.setPlainText(QtWidgets.QApplication.translate("MainWindow", "sssssffff", None, -1))
+        self.plainTextEdit_optionPage_showFileType.setPlainText(QtWidgets.QApplication.translate("MainWindow", "ma,mb,rib,ass,zip", None, -1))
         self.tabWidget_branch.setTabText(self.tabWidget_branch.indexOf(self.tab_2), QtWidgets.QApplication.translate("MainWindow", "option Edit", None, -1))
 
 
