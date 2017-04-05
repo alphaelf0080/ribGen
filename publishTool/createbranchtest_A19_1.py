@@ -9,7 +9,7 @@
 
 from PySide2 import QtCore, QtGui, QtWidgets
 import json , os
-from datetime import datetime
+import datetime
 
 
 
@@ -461,7 +461,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.pushButton_mergeToMaster.clicked.connect(self.buildTreeFromExistFileData)
         
-        self.treeWidget_branches.itemClicked.connect(self.printOutBranchInfo)
+        self.treeWidget_branches.itemClicked.connect(self.getFilesInfoFormJson)
         
         self.tableWidget_FileList.itemClicked.connect(self.printOutFileInfo)
         
@@ -484,7 +484,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.assetNow = "shot_02"
         self.processNow ="lighting"
         self.isAsset = False
-        
+        self.currentUser = "alpha"
         
         self.projectDescription()    
       
@@ -514,7 +514,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print "masterFolder",masterFolder
         print "master folder exist....:" ,os.path.isdir(masterFolder)
         print "branch Info File exist.:", os.path.isfile(self.branchFileStore)
-        timeNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        #timeNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         # .......1. check /scenes/master exist
         if os.path.isdir(masterFolder) == True:
             print "the /scense/master exist already"
@@ -910,10 +910,18 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
         
-    def test(self):
+    def createFileTable(self):
+        
+        self.getFilesInfoFormJson()
+        
         
         self.testFileInfoDict()
-        
+        '''
+          self.fileInfoDice = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
+                             '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
+                             '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
+                             '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
+'''
       #  self.tableItem = QtWidgets.QTableWidgetItem()
       #  self.tableWidget_FileList.item(0,0).setText('aaaaa')
       
@@ -955,38 +963,104 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     
 
-    def printOutBranchInfo(self):
-       # print "gggggggggggggggg"
-      #  self.textBrowser_BranchFileInfo.setText("sssssssssssss")
+    def getFilesInfoFormJson(self):  # export files to list_widget ,build from branchInfoFile as json ,ex. globals/shot/shot_02/shot02/shot_02_lighting.json
+        # check the select tree item depth, 
+        # export file dict, self.branchFilesInListDict
+        #
+        #  self.fileInfoDice = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
+        #                     '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
+        #                     '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
+        #                     '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
+
+        
+        
+       
+        print "run printOutBranchInfo starting......................."
+        print "finding files in the branch"
         itemSelect =  self.treeWidget_branches.currentItem().text(0)
         with open(self.branchFileStore, 'r') as f:
             self.branchPreDict = json.load(f)
-       # print 'check',self.branchPreDict['0'].keys()[0]
+
         topLevelItemCount = len(self.branchPreDict.keys())    
 
         self.getExistBranchDict()
 
         self.getSelectItemLevel()
-        #print self.fullItemIndex
+        
+        tempTimeFileCompareDict = {}  # temp dictionary , that store file modify datetime and file name
+        
+       # t = os.path.getmtime(fileName)
+
+       # datetime.datetime.fromtimestamp(t)
+
         if len(self.fullItemIndex) == 1:
-            print self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['folder']
+            
+           
+            #print self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file'].keys()
+            
+            #print self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file']
+            
+            self.branchFilesInListDict = self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file']
+            
+            fileCount = len(self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file'].keys())
+          #  print "find ",  fileCount ," files"
+            #print self.workProject
+            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + itemSelect
+          #  print self.filesStoreBranchFolder
+            
+            
+            for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
+                checkSingleFileNamePath = self.filesStoreBranchFolder +'/' +file
+                if checkSingleFileNamePath.split('.')[-1] in ('mb','ma','rib','zip','ass'):
+                   # print checkSingleFileNamePath
+                    t = int(os.path.getmtime(checkSingleFileNamePath))
+                    #fileModTiom = datetime.datetime.fromtimestamp(t)
+                    #print checkSingleFileNamePath, t
+                    tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
+                    
+                else:
+                    pass
+                    
+                
+                #print checkSingleFileNamePath
+            
+            
+            #for file in 
+            #checkSingleFileInFolder = self.filesStoreBranchFolder +'/' +
         elif len(self.fullItemIndex) == 2:
-            print self.fullItemIndex ,itemSelect
-            print self.fullItemIndex[0]
-            print self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'][itemSelect]['folder']
-           # print self.branchPreDict[str(self.fullItemIndex[0])]['backup']['folder']['neoGeo']
-           # print self.branchPreDict[str(self.fullItemIndex[0]]
-           # print self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['folder'][self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['folder'].keys()[0]]
-          #  print self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['folder'].keys()[1]
+            
+            secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'][itemSelect]
+
+            #print secLevelItem['file'].keys()
+            
+            self.branchFilesInListDict = secLevelItem['file']
+            
+
+
         else:
-            secLevelKey = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'].keys()[self.fullItemIndex[1]]
-            print secLevelKey
-            print self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'][secLevelKey]['folder'][itemSelect]
-        
-        
-        #self.treeWidget_branches.expandAll()
+            
 
-
+            secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder']#[self.fullItemIndex[0]]]#]['folder'][itemSelect]['folder'].keys()[0]
+            parSecLevelItem = secLevelItem.keys()[self.fullItemIndex[1]]
+            thirdLevelItem = secLevelItem[parSecLevelItem]
+            
+            fourLevelItem = thirdLevelItem['folder'][itemSelect]['file']
+            #print fourLevelItem
+            self.branchFilesInListDict = fourLevelItem
+            
+       # print self.branchFilesInListDict
+        print tempTimeFileCompareDict.keys()
+        sortTimeList = sorted(tempTimeFileCompareDict.keys())  #sorted key in list
+        fileCount = len(sortTimeList)
+       # print fileCount
+       # print sortTimeList
+        for n in range(0,fileCount):
+            serNum = sortTimeList[n]
+            print (n+1),datetime.datetime.fromtimestamp(int(serNum)) , tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser
+       # for i in sortTimeDict:
+          #  print i 
+        #    print tempTimeFileCompareDict[str(i)]
+        print "run printOutBranchInfo End......................."
 
 
     def printOutFileInfo(self):
@@ -1101,12 +1175,12 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         ##finding top Level Item topLevelItem(topItemLayerIndex)
         if self.depth == 0:
-            print "top level item"
+          #  print "top level item"
             topLevelItemIndex = self.topLayerItemDict[selectItem]
             
-            print "selectItem          :",selectItem
-            print "topLevelItem  :",selectItem
-            print "topLevelItemIndex   :",topLevelItemIndex  
+           # print "selectItem          :",selectItem
+           # print "topLevelItem  :",selectItem
+          #  print "topLevelItemIndex   :",topLevelItemIndex  
             
             self.fullItemIndex = [topLevelItemIndex]
 
@@ -1125,10 +1199,10 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
            # print self.secLayerItemDict
             secLevelItemIndex = self.secLayerItemDict[selectItem]
           
-            print "selectItem          :",selectItem
-            print "topLevelItem  :",topLayerItem
-            print "topLevelItemIndex   :",topLevelItemIndex         
-            print "secLevelItemIndex   :",secLevelItemIndex
+         #   print "selectItem          :",selectItem
+          #  print "topLevelItem  :",topLayerItem
+          #  print "topLevelItemIndex   :",topLevelItemIndex         
+          #  print "secLevelItemIndex   :",secLevelItemIndex
             
             self.fullItemIndex = [topLevelItemIndex,secLevelItemIndex]
             
@@ -1155,12 +1229,12 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
             
-            print "selectItem          :",selectItem
-            print "parentTopLevelItem  :",topLayerItem
-            print "parentSecLayerItem  :",secLayerItem
-            print "topLevelItemIndex   :",topLevelItemIndex          #topLevelItem(topLevelItemIndex).child(1)
-            print "secLevelItemIndex   :",secLevelItemIndex
-            print "thirdLevelItemIndex :",thirdLevelItemIndex
+          #  print "selectItem          :",selectItem
+          #  print "parentTopLevelItem  :",topLayerItem
+           # print "parentSecLayerItem  :",secLayerItem
+          #  print "topLevelItemIndex   :",topLevelItemIndex          #topLevelItem(topLevelItemIndex).child(1)
+          #  print "secLevelItemIndex   :",secLevelItemIndex
+           # print "thirdLevelItemIndex :",thirdLevelItemIndex
             
             self.fullItemIndex = [topLevelItemIndex,secLevelItemIndex,thirdLevelItemIndex]
             
