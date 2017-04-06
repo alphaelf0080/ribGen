@@ -460,7 +460,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.pushButton_mergeToMaster.clicked.connect(self.buildTreeFromExistFileData)
         
-        self.treeWidget_branches.itemClicked.connect(self.getFilesInfoFormJson)
+        self.treeWidget_branches.itemClicked.connect(self.createFileTable)
         
         self.tableWidget_FileList.itemClicked.connect(self.printOutFileInfo)
         
@@ -839,7 +839,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
     def testFileInfoDict(self):
         
-        self.fileInfoDice = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
+        self.fileInfoDict = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
                              '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
                              '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
                              '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
@@ -913,21 +913,31 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def createFileTable(self):
         
         self.getFilesInfoFormJson()
+        self.tableWidget_FileList.clear
+
+       # self.getFilesInfoFormJson()
+        #self.testFileInfoDict()
         
-        
-        self.testFileInfoDict()
-        '''
-          self.fileInfoDice = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
-                             '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
-                             '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
-                             '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
-'''
+        #print self.testFileInfoDict()
+  
+         # self.fileInfoDict = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
+                         #    '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
+                          #   '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
+                          #   '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
+                             
+                             
+                             
+                             
+    def createFileTable(self):
+        self.getFilesInfoFormJson()
       #  self.tableItem = QtWidgets.QTableWidgetItem()
       #  self.tableWidget_FileList.item(0,0).setText('aaaaa')
       
-        tableIndex = sorted(self.fileInfoDice.keys())  #string
+        tableIndex = sorted(self.fileInfoDict.keys())  #string
         
-        verIndex = sorted(self.fileInfoDice.keys(), reverse = True )
+        verIndex = sorted(self.fileInfoDict.keys(), reverse = True )        
+        
+        self.tableWidget_FileList.clear
         
       #  print verIndex
 
@@ -946,11 +956,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.tableItem = QtWidgets.QTableWidgetItem()
             self.tableWidget_FileList.setItem(i, 2, self.tableItem)
             
-            itemVer = self.fileInfoDice[str(j)][0].split('_')[4]    #get version data,form dictionary,
+            itemVer = self.fileInfoDict[str(j)][0].split('_')[4]    #get version data,form dictionary,
            # print itemVer
-            itemUser = self.fileInfoDice[str(j)][1]
+            itemUser = self.fileInfoDict[str(j)][1]
            # print itemUser
-            itemDate = self.fileInfoDice[str(j)][2]
+            itemDate = self.fileInfoDict[str(j)][2]
           #  print itemVer#, itemUser, itemDate
             
             self.tableWidget_FileList.item(i, 0).setText(QtWidgets.QApplication.translate("MainWindow", itemVer, None, -1))
@@ -967,11 +977,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # check the select tree item depth, 
         # export file dict, self.branchFilesInListDict
         #
-        #  self.fileInfoDice = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
-        #                     '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
-        #                     '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
-        #                     '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
-        
+
         
         fileTypeFillet = self.plainTextEdit_optionPage_showFileType.toPlainText().split(',')
         #print fileTypeFillet
@@ -1008,10 +1014,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
                 checkSingleFileNamePath = self.filesStoreBranchFolder +'/' +file
                 if checkSingleFileNamePath.split('.')[-1] in fileTypeFillet:
-                   # print checkSingleFileNamePath
                     t = int(os.path.getmtime(checkSingleFileNamePath))
-                    #fileModTiom = datetime.datetime.fromtimestamp(t)
-                    #print checkSingleFileNamePath, t
+
                     tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
                     
                 else:
@@ -1031,25 +1035,21 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
            # print "self.branchFilesInListDict.keys()",self.branchFilesInListDict.keys()
             for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
                 checkSingleFileNamePath = self.filesStoreBranchFolder +'/' + file
-                #print checkSingleFileNamePath
-              #  print self.workProject
-              #  print itemSelect
-                
-             
+ 
                 if checkSingleFileNamePath.split('.')[-1] in fileTypeFillet:
 
                     t = int(os.path.getmtime(checkSingleFileNamePath))
 
                     tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
                     
-             #   else:
-                 #   pass
+                else:
+                    pass
                     
 
 
 
         else:
-            
+            topLayerItem = self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]
 
             secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder']#[self.fullItemIndex[0]]]#]['folder'][itemSelect]['folder'].keys()[0]
             parSecLevelItem = secLevelItem.keys()[self.fullItemIndex[1]]
@@ -1059,20 +1059,45 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             #print fourLevelItem
             self.branchFilesInListDict = fourLevelItem
             
-       # print self.branchFilesInListDict
-        #print tempTimeFileCompareDict.keys()
+            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/'+ topLayerItem + '/' + parSecLevelItem +'/'+itemSelect
+            
+            print self.filesStoreBranchFolder 
+            for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
+                checkSingleFileNamePath = self.filesStoreBranchFolder +'/' + file
+ 
+                if checkSingleFileNamePath.split('.')[-1] in fileTypeFillet:
+
+                    t = int(os.path.getmtime(checkSingleFileNamePath))
+
+                    tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
+                    
+                else:
+                    pass
+                    
+    
+            
+
         sortTimeList = sorted(tempTimeFileCompareDict.keys())  #sorted key in list
         fileCount = len(sortTimeList)
-        #print 'fileCount',fileCount
-        #print sortTimeList
-        for n in range(0,fileCount):
-            serNum = sortTimeList[n]
-            print (n+1),datetime.datetime.fromtimestamp(int(serNum)) , tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser
-       # for i in sortTimeDict:
-          #  print i 
-        #    print tempTimeFileCompareDict[str(i)]
-        print "run printOutBranchInfo End......................."
 
+        #  self.fileInfoDict = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
+        #                     '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
+        #                     '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
+        #                     '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
+        #
+        #   store file information into dictionary, self.fileInfoDict
+        self.fileInfoDict ={} # define a new empty fileInfoDict
+        for n in range(0,fileCount):
+            serNum = sortTimeList[n]  #get file modify time
+            print (n+1),datetime.datetime.fromtimestamp(int(serNum)) , tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser
+            self.fileInfoDict.update({str(n+1):[tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser,serNum]})
+
+
+
+
+
+        print "run printOutBranchInfo End......................."
+        print self.fileInfoDict
 
     def printOutFileInfo(self):
        # print "gggggggggggggggg"
