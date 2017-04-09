@@ -41,6 +41,9 @@ projectName:
 					shotBranchFileInfo.json  -- shotName_process.json    #decript all branch and file information
 
 
+fileName:  projectInitial + shotName(assetName) + processName + branchName + version +userName .mb
+		3dpt_shot_02_lig_master_v001_alpha.mb
+
 
 
 

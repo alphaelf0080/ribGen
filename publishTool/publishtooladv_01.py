@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:/Users/alpha/Documents/GitHub/ribGen/publishTool/publishtooladv_01.ui'
 #
-# Created: Wed Apr 05 22:45:35 2017
+# Created: Sun Apr 09 21:24:07 2017
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -45,7 +45,8 @@ class Ui_MainWindow(object):
         self.textBrowser_BranchFileInfo.setGeometry(QtCore.QRect(190, 160, 351, 151))
         self.textBrowser_BranchFileInfo.setMidLineWidth(1)
         self.textBrowser_BranchFileInfo.setTabChangesFocus(False)
-        self.textBrowser_BranchFileInfo.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
+        self.textBrowser_BranchFileInfo.setReadOnly(False)
+        self.textBrowser_BranchFileInfo.setTextInteractionFlags(QtCore.Qt.TextEditorInteraction)
         self.textBrowser_BranchFileInfo.setOpenExternalLinks(True)
         self.textBrowser_BranchFileInfo.setObjectName("textBrowser_BranchFileInfo")
         self.label = QtWidgets.QLabel(self.tab_branch)
@@ -103,7 +104,7 @@ class Ui_MainWindow(object):
         self.pushButton_submitFileImfo.setFlat(True)
         self.pushButton_submitFileImfo.setObjectName("pushButton_submitFileImfo")
         self.tableWidget_FileList = QtWidgets.QTableWidget(self.tab_branch)
-        self.tableWidget_FileList.setGeometry(QtCore.QRect(190, 0, 351, 151))
+        self.tableWidget_FileList.setGeometry(QtCore.QRect(190, 0, 351, 131))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.tableWidget_FileList.setFont(font)
@@ -111,6 +112,7 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.setAutoScrollMargin(16)
         self.tableWidget_FileList.setAlternatingRowColors(True)
         self.tableWidget_FileList.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tableWidget_FileList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tableWidget_FileList.setObjectName("tableWidget_FileList")
         self.tableWidget_FileList.setColumnCount(3)
         self.tableWidget_FileList.setRowCount(15)
@@ -224,6 +226,29 @@ class Ui_MainWindow(object):
         self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.tab_branch)
         self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 500, 261, 41))
         self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
+        self.lineEdit_currentFileName = QtWidgets.QLineEdit(self.tab_branch)
+        self.lineEdit_currentFileName.setGeometry(QtCore.QRect(190, 132, 351, 27))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 44, 34))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 44, 34))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(240, 240, 240))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
+        self.lineEdit_currentFileName.setPalette(palette)
+        self.lineEdit_currentFileName.setObjectName("lineEdit_currentFileName")
         self.tabWidget_branch.addTab(self.tab_branch, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -318,7 +343,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(6)
         self.plainTextEdit_optionPage_showFileType.setFont(font)
-        self.plainTextEdit_optionPage_showFileType.setReadOnly(True)
+        self.plainTextEdit_optionPage_showFileType.setReadOnly(False)
         self.plainTextEdit_optionPage_showFileType.setObjectName("plainTextEdit_optionPage_showFileType")
         self.plainTextEdit_optionPage_tempB = QtWidgets.QPlainTextEdit(self.tab_2)
         self.plainTextEdit_optionPage_tempB.setGeometry(QtCore.QRect(170, 390, 351, 40))
@@ -341,6 +366,11 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "MainWindow", None, -1))
         self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
         self.pushButton_createNewBranch.setText(QtWidgets.QApplication.translate("MainWindow", "new Branch", None, -1))
+        self.textBrowser_BranchFileInfo.setHtml(QtWidgets.QApplication.translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'PMingLiU\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fileIno:</p></body></html>", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("MainWindow", "Branch Name", None, -1))
         self.treeWidget_branches.headerItem().setText(0, QtWidgets.QApplication.translate("MainWindow", "branch Info", None, -1))
         __sortingEnabled = self.treeWidget_branches.isSortingEnabled()
@@ -406,6 +436,7 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.item(8, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
         self.tableWidget_FileList.setSortingEnabled(__sortingEnabled)
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
+        self.lineEdit_currentFileName.setText(QtWidgets.QApplication.translate("MainWindow", "SelectFile:", None, -1))
         self.tabWidget_branch.setTabText(self.tabWidget_branch.indexOf(self.tab_branch), QtWidgets.QApplication.translate("MainWindow", "branch Edit", None, -1))
         self.label_optionPage_projDescription.setText(QtWidgets.QApplication.translate("MainWindow", "project Description:", None, -1))
         self.label_optionPage_showFileType.setText(QtWidgets.QApplication.translate("MainWindow", "show File Type:", None, -1))

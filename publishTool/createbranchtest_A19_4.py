@@ -15,7 +15,6 @@ import datetime
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.setFontSize=5
-        
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(582, 712)
@@ -51,7 +50,8 @@ class Ui_MainWindow(object):
         self.textBrowser_BranchFileInfo.setGeometry(QtCore.QRect(190, 160, 351, 151))
         self.textBrowser_BranchFileInfo.setMidLineWidth(1)
         self.textBrowser_BranchFileInfo.setTabChangesFocus(False)
-        self.textBrowser_BranchFileInfo.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
+        self.textBrowser_BranchFileInfo.setReadOnly(False)
+        self.textBrowser_BranchFileInfo.setTextInteractionFlags(QtCore.Qt.TextEditorInteraction)
         self.textBrowser_BranchFileInfo.setOpenExternalLinks(True)
         self.textBrowser_BranchFileInfo.setObjectName("textBrowser_BranchFileInfo")
         self.label = QtWidgets.QLabel(self.tab_branch)
@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
         self.pushButton_submitFileImfo.setFlat(True)
         self.pushButton_submitFileImfo.setObjectName("pushButton_submitFileImfo")
         self.tableWidget_FileList = QtWidgets.QTableWidget(self.tab_branch)
-        self.tableWidget_FileList.setGeometry(QtCore.QRect(190, 0, 351, 151))
+        self.tableWidget_FileList.setGeometry(QtCore.QRect(190, 0, 351, 131))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.tableWidget_FileList.setFont(font)
@@ -117,6 +117,7 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.setAutoScrollMargin(16)
         self.tableWidget_FileList.setAlternatingRowColors(True)
         self.tableWidget_FileList.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tableWidget_FileList.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tableWidget_FileList.setObjectName("tableWidget_FileList")
         self.tableWidget_FileList.setColumnCount(3)
         self.tableWidget_FileList.setRowCount(15)
@@ -230,6 +231,29 @@ class Ui_MainWindow(object):
         self.pushButton_reNewBranchDict = QtWidgets.QPushButton(self.tab_branch)
         self.pushButton_reNewBranchDict.setGeometry(QtCore.QRect(10, 500, 261, 41))
         self.pushButton_reNewBranchDict.setObjectName("pushButton_reNewBranchDict")
+        self.lineEdit_currentFileName = QtWidgets.QLineEdit(self.tab_branch)
+        self.lineEdit_currentFileName.setGeometry(QtCore.QRect(190, 132, 351, 27))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 44, 34))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 44, 34))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(240, 240, 240))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
+        self.lineEdit_currentFileName.setPalette(palette)
+        self.lineEdit_currentFileName.setObjectName("lineEdit_currentFileName")
         self.tabWidget_branch.addTab(self.tab_branch, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -347,6 +371,11 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "MainWindow", None, -1))
         self.pushButton_mergeToMaster.setText(QtWidgets.QApplication.translate("MainWindow", "merge", None, -1))
         self.pushButton_createNewBranch.setText(QtWidgets.QApplication.translate("MainWindow", "new Branch", None, -1))
+        self.textBrowser_BranchFileInfo.setHtml(QtWidgets.QApplication.translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'PMingLiU\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fileIno:</p></body></html>", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("MainWindow", "Branch Name", None, -1))
         self.treeWidget_branches.headerItem().setText(0, QtWidgets.QApplication.translate("MainWindow", "branch Info", None, -1))
         __sortingEnabled = self.treeWidget_branches.isSortingEnabled()
@@ -412,6 +441,7 @@ class Ui_MainWindow(object):
         self.tableWidget_FileList.item(8, 2).setText(QtWidgets.QApplication.translate("MainWindow", "2017.03/28 10:00", None, -1))
         self.tableWidget_FileList.setSortingEnabled(__sortingEnabled)
         self.pushButton_reNewBranchDict.setText(QtWidgets.QApplication.translate("MainWindow", "ReNew Branch Dict", None, -1))
+        self.lineEdit_currentFileName.setText(QtWidgets.QApplication.translate("MainWindow", "SelectFile:", None, -1))
         self.tabWidget_branch.setTabText(self.tabWidget_branch.indexOf(self.tab_branch), QtWidgets.QApplication.translate("MainWindow", "branch Edit", None, -1))
         self.label_optionPage_projDescription.setText(QtWidgets.QApplication.translate("MainWindow", "project Description:", None, -1))
         self.label_optionPage_showFileType.setText(QtWidgets.QApplication.translate("MainWindow", "show File Type:", None, -1))
@@ -458,7 +488,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
 
 
-        self.pushButton_mergeToMaster.clicked.connect(self.buildTreeFromExistFileData)
+        self.pushButton_mergeToMaster.clicked.connect(self.clear)
         
         self.treeWidget_branches.itemClicked.connect(self.createFileTable)
         
@@ -472,7 +502,11 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
   #-----------------------------------upper are load startUp-------------------------------------------------------------------------------------------------------      
         
-   
+    def clear(self):
+        
+        self.tableWidget_FileList.clear()
+        
+        
     def printOutProjectInfo(self):
         # input project infomation, project root, name,asset name, shot name, isAsset Value
         print "get input info"
@@ -911,14 +945,12 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
     def createFileTable(self):
+        print" run createFileTable function start..................."
         
         self.getFilesInfoFormJson()
-        self.tableWidget_FileList.clear
-        print self.fileInfoDict
-       # self.getFilesInfoFormJson()
-        #self.testFileInfoDict()
+        self.tableWidget_FileList.clear()
         
-        #print self.testFileInfoDict()
+
   
          # self.fileInfoDict = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
                          #    '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
@@ -926,51 +958,43 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                           #   '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
                              
                              
-                             
-                             
-    #def createFileTableB(self):
-    #    self.getFilesInfoFormJson()
-      #  self.tableItem = QtWidgets.QTableWidgetItem()
-      #  self.tableWidget_FileList.item(0,0).setText('aaaaa')
-      
         tableIndex = sorted(self.fileInfoDict.keys())  #string
         
         verIndex = sorted(self.fileInfoDict.keys(), reverse = True )        
-        print verIndex
-        #self.tableWidget_FileList.clear
-        
-      #  print verIndex
-    def aaa(self):
-
-        for i , j  in zip(range(0,(int(tableIndex[-1]))+1),verIndex):
-            
-            
-            
-            
-            
-            
-            #print i,type(i) , j,type(j)
-            self.tableItem = QtWidgets.QTableWidgetItem()
-            self.tableWidget_FileList.setItem(i, 0, self.tableItem)
-            self.tableItem = QtWidgets.QTableWidgetItem()
-            self.tableWidget_FileList.setItem(i, 1, self.tableItem)
-            self.tableItem = QtWidgets.QTableWidgetItem()
-            self.tableWidget_FileList.setItem(i, 2, self.tableItem)
-            
-            itemVer = self.fileInfoDict[str(j)][0].split('_')[4]    #get version data,form dictionary,
-           # print itemVer
-            itemUser = self.fileInfoDict[str(j)][1]
-           # print itemUser
-            itemDate = self.fileInfoDict[str(j)][2]
-          #  print itemVer#, itemUser, itemDate
-            
-            self.tableWidget_FileList.item(i, 0).setText(QtWidgets.QApplication.translate("MainWindow", itemVer, None, -1))
-            self.tableWidget_FileList.item(i, 1).setText(QtWidgets.QApplication.translate("MainWindow", itemUser, None, -1))
-           # self.tableWidget_FileList.item(i, 1).setText(itemUser)
-            self.tableWidget_FileList.item(i, 2).setText(QtWidgets.QApplication.translate("MainWindow", itemDate, None, -1))
-           # self.tableWidget_FileList.item(i, 2).setText(itemDate)
 
 
+        if len(tableIndex) > 0:
+            for i in range(0,len(tableIndex)):
+               # print i,verIndex[i],self.fileInfoDict[str(verIndex[i])]  #i indexNum,verIndex[i]--->version,self.fileInfoDict[str(verIndex[i])--->fileName
+                itemVer = "v"+verIndex[i]
+                #print itemVer
+
+                self.tableItem = QtWidgets.QTableWidgetItem()
+                self.tableWidget_FileList.setItem(i, 0, self.tableItem)
+                self.tableItem = QtWidgets.QTableWidgetItem()
+                self.tableWidget_FileList.setItem(i, 1, self.tableItem)
+                self.tableItem = QtWidgets.QTableWidgetItem()
+                self.tableWidget_FileList.setItem(i, 2, self.tableItem)
+               # self.tableWidget_FileList.setItem(i, 3, self.tableItem)
+               # print self.fileInfoDict[str(verIndex[i])]# ,type(self.tableWidget_FileList.setItem(i, 0, self.tableItem)[2])
+
+                
+                itemUser = self.currentUser
+                itemDateTemp = datetime.datetime.fromtimestamp(float(self.fileInfoDict[str(verIndex[i])][2]))
+                itemDate = str(itemDateTemp.date())+' '+(str(itemDateTemp.time())).split('.')[0]
+                itemFileName = self.fileInfoDict[str(verIndex[i])][0]
+                self.tableWidget_FileList.item(i, 0).setText(QtWidgets.QApplication.translate("MainWindow", itemVer, None, -1))
+
+
+                self.tableWidget_FileList.item(i, 1).setText(QtWidgets.QApplication.translate("MainWindow", itemUser, None, -1))
+                self.tableWidget_FileList.item(i, 2).setText(QtWidgets.QApplication.translate("MainWindow", itemDate, None, -1))
+               # self.tableWidget_FileList.item(i, 3).setText(QtWidgets.QApplication.translate("MainWindow", itemFileName, None, -1))
+
+              #  self.textBrowser_BranchFileInfo.setText("sssssssssssss")
+                print itemFileName
+        else:
+            pass
+        print" run createFileTable function End..................."
 
     
 
@@ -981,13 +1005,16 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         
         fileTypeFillet = self.plainTextEdit_optionPage_showFileType.toPlainText().split(',')
-        #print fileTypeFillet
-       
-        print "run printOutBranchInfo starting......................."
+        print fileTypeFillet
+        print "run getFilesInfoFormJson starting......................."
         print "finding files in the branch"
         itemSelect =  self.treeWidget_branches.currentItem().text(0)
+        print "check Point 01"
+        
         with open(self.branchFileStore, 'r') as f:
             self.branchPreDict = json.load(f)
+            
+  #  def ccc(self):
 
         topLevelItemCount = len(self.branchPreDict.keys())    
 
@@ -1000,7 +1027,6 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
        # t = os.path.getmtime(fileName)
 
        # datetime.datetime.fromtimestamp(t)
-
         if len(self.fullItemIndex) == 1:
             
 
@@ -1010,43 +1036,53 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             fileCount = len(self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file'].keys())
 
             self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + itemSelect
+            #print fileTypeFillet
             
-            
+            countDiff = 0.1  # countDiff is for different file,that has the same modify time.
+ 
             for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
                 checkSingleFileNamePath = self.filesStoreBranchFolder +'/' +file
-                if checkSingleFileNamePath.split('.')[-1] in fileTypeFillet:
-                    t = int(os.path.getmtime(checkSingleFileNamePath))
+                if os.path.splitext(checkSingleFileNamePath)[1].split('.')[1] in fileTypeFillet:
+                    t = (os.path.getmtime(checkSingleFileNamePath))+countDiff
 
-                    tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
-                    
+                    tempTimeFileCompareDict.update({('%.2f'%t):checkSingleFileNamePath})
+
+                    countDiff = countDiff + 0.1
+
+    
                 else:
                     pass
-                    
-
+           
+           # print "tempTimeFileCompareDict",tempTimeFileCompareDict
         elif len(self.fullItemIndex) == 2:
             
             secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'][itemSelect]
 
-            print "secLevelItem['file'].keys()",secLevelItem['folder']
+          #  print "secLevelItem['file'].keys()",secLevelItem['folder']
             self.branchFilesInListDict = secLevelItem['file']
             secLevelFolder = self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]
 
             self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + secLevelFolder + '/' + itemSelect
-            print self.filesStoreBranchFolder
+          #  print self.filesStoreBranchFolder
            # print "self.branchFilesInListDict.keys()",self.branchFilesInListDict.keys()
+
+            countDiff = 0.1  # countDiff is for different file,that has the same modify time.
+           
             for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
                 checkSingleFileNamePath = self.filesStoreBranchFolder +'/' + file
  
                 if checkSingleFileNamePath.split('.')[-1] in fileTypeFillet:
 
-                    t = int(os.path.getmtime(checkSingleFileNamePath))
+                    t = (os.path.getmtime(checkSingleFileNamePath))+countDiff
 
-                    tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
-                    
+                    tempTimeFileCompareDict.update({('%.2f'%t):checkSingleFileNamePath})
+
+                    countDiff = countDiff + 0.1
+                  
                 else:
                     pass
                     
-
+    
 
 
         else:
@@ -1062,15 +1098,20 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
             self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/'+ topLayerItem + '/' + parSecLevelItem +'/'+itemSelect
             
-            print self.filesStoreBranchFolder 
+          #  print self.filesStoreBranchFolder 
+            countDiff = 0.1  # countDiff is for different file,that has the same modify time.
+
             for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
                 checkSingleFileNamePath = self.filesStoreBranchFolder +'/' + file
  
                 if checkSingleFileNamePath.split('.')[-1] in fileTypeFillet:
 
-                    t = int(os.path.getmtime(checkSingleFileNamePath))
+                    t = (os.path.getmtime(checkSingleFileNamePath))+countDiff
 
-                    tempTimeFileCompareDict.update({str(t):checkSingleFileNamePath})
+                    tempTimeFileCompareDict.update({('%.2f'%t):checkSingleFileNamePath})
+
+                    countDiff = countDiff + 0.1
+                  
                     
                 else:
                     pass
@@ -1090,27 +1131,37 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.fileInfoDict ={} # define a new empty fileInfoDict
         for n in range(0,fileCount):
             serNum = sortTimeList[n]  #get file modify time
-            print (n+1),datetime.datetime.fromtimestamp(int(serNum)) , tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser
-            self.fileInfoDict.update({str(n+1):[tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser,serNum]})
+            indexNum = n +1
+           # print  serNum
+          #  print (n+1),datetime.datetime.fromtimestamp(float(serNum)) , tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser
+            self.fileInfoDict.update({"%03d"%indexNum:[tempTimeFileCompareDict[serNum].split('/')[-1],self.currentUser,serNum]})
 
 
 
 
-
-        print "run printOutBranchInfo End......................."
-        print self.fileInfoDict
-
-    def printOutFileInfo(self):
-       # print "gggggggggggggggg"
-        self.textBrowser_BranchFileInfo.setText("sssssssssssss")
         
-        getFileKey = self.tableWidget_FileList.currentItem().text()
+        print "run getFilesInfoFormJson End......................."
+       # print self.fileInfoDict
+        print self.branchFilesInListDict
+      #  print tempTimeFileCompareDict
+      
+ #-----------------print out file info in textBrowser function start-------------------------------------------------------------------     
+    def printOutFileInfo(self):
+        # print self.fileInfoDict
+        # get information form self.fileInfoDict
+        # find selectItem row ,cloumn,
+        getFileRow =self.tableWidget_FileList.currentItem().row()
+        getFileColumn= self.tableWidget_FileList.currentItem().column()
+        
+        
+        getFileKey = self.tableWidget_FileList.item(getFileRow,0).text()[1:]
+        getFileName  = self.fileInfoDict[getFileKey][0]
 
-        print getFileKey
+        self.lineEdit_currentFileName.setText(getFileName)
 
 
 
-
+ #-----------------print out file info in textBrowser function End-------------------------------------------------------------------     
 
     def getChildIndexCount(self):
         
@@ -1341,7 +1392,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     # create New Branch on Top Level ----------------------------------------------------------------------------------------------------------------------
-    def createNewBranchTopLevel(self):      
+    def createNewBranchTopLevelB(self):      
         
       #  self.defineFontLevelTwo()
         #self.newBranch = self.lineEdit_branchName.text()
@@ -1350,7 +1401,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
      
         #self.creatrTreeItems()
         #print "new Branch" ,self.newBranch
-
+    ##  --------------------------UI------------------------------------------------------------------------------------
         ##create Top Level Branch  ,the same level as master
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget_branches).setForeground(0,self.brushLevelTwo)
         self.topLayerBranchIndex =(self.treeWidget_branches.topLevelItemCount()-1)
@@ -1365,9 +1416,18 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         
         #update assetBranchFileInfo.json
+    ##-------------------------creader folder---------------------------------------------------------  
+
+        createTopLayerFoder = self.workProject + '/' +'scenes'+ '/'+ self.newBranch 
+        print os.path.isdir(createTopLayerFoder)
+        if os.path.isdir(createTopLayerFoder) == True:
+            print "already has "+"%s"%createTopLayerFoder + " folder"
+            
+        else:
+            os.mkdir(createTopLayerFoder)
+            
         
-        
-        
+       # print createTopLayerFoder
         
     # create New Branch on Child Level ----------------------------------------------------------------------------------------------------------------------
     def createNewBranchChildLevel(self): 
@@ -1424,6 +1484,8 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
                     self.treeWidget_branches.topLevelItem(topLevelIndex).child(existLevelCount).setFont(0,self.fontLevelThree)
     
+                #    createTopLayerFoder = self.workProject + '/' +'scenes'+ '/'#+ self.newBranch 
+                 #   print createTopLayerFoder
 
                 except:
                     #pass
