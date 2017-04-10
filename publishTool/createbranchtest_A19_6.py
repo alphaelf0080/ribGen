@@ -488,7 +488,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_createNewBranch.clicked.connect(self.createNewBranchCombo)
 
 
-        self.pushButton_mergeToMaster.clicked.connect(self.clear)
+        self.pushButton_mergeToMaster.clicked.connect(self.getSavingFile)
         
         self.treeWidget_branches.itemClicked.connect(self.createFileTable)
         
@@ -1004,7 +1004,15 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def getSavingFile(self):
-        self.workProject
+        print self.workProject
+        
+        #self.getFilesInfoFormJson()
+        print self.filesStoreBranchFolder
+
+        
+
+  
+         # self.fileInfoDict =
         
                     
 
