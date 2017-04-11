@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PySide2 import QtCore, QtGui, QtWidgets
+import maya.cmds as cmds
 import json , os , getpass,socket
 import datetime
 
@@ -949,23 +950,17 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
     def createFileTable(self):
         print" run createFileTable function start..................."
-        
+        self.itemSelect =  self.treeWidget_branches.currentItem().text(0)
+
         self.getFilesInfoFormJson()
         self.tableWidget_FileList.clear()
-        
 
-  
-         # self.fileInfoDict = {'01':["projectName_assetClass_assetName_process_v001_alpha.mb","alpha","2017/03/28    10:28","info xxxxxxxxxxxxxxxxxxxxxx"],
-                         #    '02':["projectName_assetClass_assetName_process_v002_alpha.mb","alpha","2017/03/28    10:29"],
-                          #   '03':["projectName_assetClass_assetName_process_v003_alpha.mb","alpha","2017/03/28    10:30"],
-                          #   '04':["projectName_assetClass_assetName_process_v004_alpha.mb","alpha","2017/03/28    10:31"],
-                             
                              
         tableIndex = sorted(self.fileInfoDict.keys())  #string
         
         verIndex = sorted(self.fileInfoDict.keys(), reverse = True )        
-
-
+        print "verIndex",verIndex
+        print "createFileTable check point 01"
         if len(tableIndex) > 0:
             for i in range(0,len(tableIndex)):
                # print i,verIndex[i],self.fileInfoDict[str(verIndex[i])]  #i indexNum,verIndex[i]--->version,self.fileInfoDict[str(verIndex[i])--->fileName
@@ -1004,61 +999,134 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def getSavingFile(self):
-        print self.workProject
+        # print self.workProject
         
-        #self.getFilesInfoFormJson()
-        print self.filesStoreBranchFolder
-
+        #print self.getFilesInfoFormJson()
+        #print self.filesStoreBranchFolder  #, export branch folder
+        # print "self.fileInfoDict" ,self.fileInfoDict
         #self.root ="//mcd-server/art_3d_project"
         #self.project = "3d_pipeline_test"
         #self.assetClass ="character"
         #self.assetNow = "shot_02"
-        #self.processNow ="lighting"        
+        #self.processNow ="lighting" 
+       # print self.fileInfoDict.keys()       
 
-        print self.filesStoreBranchFolder
-         # self.fileInfoDict =
         
-                    
+        currentBranch = self.itemSelect 
+        #print currentBranch
+        
 
-    def getFilesInfoFormJson(self):  # export files to list_widget ,build from branchInfoFile as json ,ex. globals/shot/shot_02/shot02/shot_02_lighting.json
-        # check the select tree item depth, 
-        # export file dict, self.branchFilesInListDict
+        #-------------define project initial
+        self.projectInitial = ""
+        for par in self.project.split('_'):
+            self.projectInitial = self.projectInitial + par[0]
+            
+       
+        #-----------finding last version, illegal
+        tempVerList= []
+        if len(self.fileInfoDict.keys()) >0:
+
+            for verKey in self.fileInfoDict.keys():
+               # print verKey , self.fileInfoDict[verKey][0]
+                existVerNum = self.fileInfoDict[verKey][0].split('%s'%self.itemSelect)[1].split('_')[1].split('v')[1]
+                tempVerList.append(existVerNum)
+                
+                
+            
+            tempNextVerNum = int(sorted(tempVerList)[-1])+1
+            nextVerNum = 'v'+'%03d'%tempNextVerNum
+            
+        else:
+            
+            nextVerNum= 'v001'
+            
+        
+        #------------define savingFileName in branch
+        getSavingName = self.projectInitial + '_' + self.assetNow +'_'+ self.processNow[0:3] + '_' + currentBranch +'_'+ nextVerNum +'_'+self.currentUser +'.mb'
+        
+        self.longSavingName = self.filesStoreBranchFolder + '/' +getSavingName
+        
+        print self.longSavingName
+        
+        
+        #cmds.file(self.longSavingName,rename=True)
+
+        cmds.file( rename=self.longSavingName )
+        cmds.file( save=True, type='mayaBinary' )
+        
+        #self.initialItemBuild()
+        #self.getFilesInfoFormJson()
+        self.buildExistFileInfoTree()
+        self.createFileTable()
+        print "reNew file Table"
+
+    
+    
+    
+
+    def getFilesInfoFormJson(self):
+        #   1.  export files to list_widget ,build from branchInfoFile as json ,ex. globals/shot/shot_02/shot02/shot_02_lighting.json
+        #   2.  check the select tree item depth, 
+        #   3.  export file dict, self.branchFilesInListDict       
+        #   
+        #   4.  return current branch select self.itemSelect
+        #   5.  return current branch folder self.filesStoreBranchFolder
+        #   6.  return all files dictionary in current branch self.branchFilesInListDict
+        #   7.  return illegal files dictionary in current branch self.fileInfoDict  
         #
-
+        #
+        #
+        #
+        #
+        #
+        
+        
+        #initial all cache in dictionary
+        self.branchFilesInListDict ={}
+        self.fileInfoDict ={}
         
         fileTypeFillet = self.plainTextEdit_optionPage_showFileType.toPlainText().split(',')
         print fileTypeFillet
         print "run getFilesInfoFormJson starting......................."
         print "finding files in the branch"
-        itemSelect =  self.treeWidget_branches.currentItem().text(0)
-        
+        #self.itemSelect =  self.treeWidget_branches.currentItem().text(0)
+        print self.branchFileStore
         with open(self.branchFileStore, 'r') as f:
             self.branchPreDict = json.load(f)
             
-  #  def ccc(self):
 
+        print "self.branchPreDict.keys()",self.branchPreDict.keys()
         topLevelItemCount = len(self.branchPreDict.keys())    
 
         self.getExistBranchDict()
 
         self.getSelectItemLevel()
         
+        
         tempTimeFileCompareDict = {}  # temp dictionary , that store file modify datetime and file name
         
+        print "self.branchPreDict", self.branchPreDict
        # t = os.path.getmtime(fileName)
+        print "self.fullItemIndex",self.fullItemIndex
 
-       # datetime.datetime.fromtimestamp(t)
+    # datetime.datetime.fromtimestamp(t)
+       
         if len(self.fullItemIndex) == 1:
+            print "getFilesInfoFormJson check point A"
             
+            print "getFilesInfoFormJson check point A01"
 
+            print self.itemSelect
+            self.branchFilesInListDict = self.branchPreDict[str(self.fullItemIndex[0])][self.itemSelect]['file']
+            print "getFilesInfoFormJson check point 02"
             
-            self.branchFilesInListDict = self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file']
-            
-            fileCount = len(self.branchPreDict[str(self.fullItemIndex[0])][itemSelect]['file'].keys())
+            fileCount = len(self.branchPreDict[str(self.fullItemIndex[0])][self.itemSelect]['file'].keys())
+            print "getFilesInfoFormJson check point 03"
 
-            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + itemSelect
+            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + self.itemSelect
             #print fileTypeFillet
-            
+            print "getFilesInfoFormJson check point 04"
+
             countDiff = 0.1  # countDiff is for different file,that has the same modify time.
  
             for file in self.branchFilesInListDict.keys():  # get fileName List in the folder,self.filesStoreBranchFolder
@@ -1076,14 +1144,15 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
            
            # print "tempTimeFileCompareDict",tempTimeFileCompareDict
         elif len(self.fullItemIndex) == 2:
+            print "getFilesInfoFormJson check point B"
             
-            secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'][itemSelect]
+            secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder'][self.itemSelect]
 
           #  print "secLevelItem['file'].keys()",secLevelItem['folder']
             self.branchFilesInListDict = secLevelItem['file']
             secLevelFolder = self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]
 
-            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + secLevelFolder + '/' + itemSelect
+            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/' + secLevelFolder + '/' + self.itemSelect
           #  print self.filesStoreBranchFolder
            # print "self.branchFilesInListDict.keys()",self.branchFilesInListDict.keys()
 
@@ -1107,17 +1176,19 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
         else:
+            print "getFilesInfoFormJson check point C"
+
             topLayerItem = self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]
 
-            secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder']#[self.fullItemIndex[0]]]#]['folder'][itemSelect]['folder'].keys()[0]
+            secLevelItem = self.branchPreDict[str(self.fullItemIndex[0])][self.branchPreDict[str(self.fullItemIndex[0])].keys()[0]]['folder']#[self.fullItemIndex[0]]]#]['folder'][self.itemSelect]['folder'].keys()[0]
             parSecLevelItem = secLevelItem.keys()[self.fullItemIndex[1]]
             thirdLevelItem = secLevelItem[parSecLevelItem]
             
-            fourLevelItem = thirdLevelItem['folder'][itemSelect]['file']
+            fourLevelItem = thirdLevelItem['folder'][self.itemSelect]['file']
             #print fourLevelItem
             self.branchFilesInListDict = fourLevelItem
             
-            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/'+ topLayerItem + '/' + parSecLevelItem +'/'+itemSelect
+            self.filesStoreBranchFolder = self.workProject + '/' +'scenes' + '/'+ topLayerItem + '/' + parSecLevelItem +'/'+self.itemSelect
             
           #  print self.filesStoreBranchFolder 
             countDiff = 0.1  # countDiff is for different file,that has the same modify time.
@@ -1162,9 +1233,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         
         print "run getFilesInfoFormJson End......................."
-       # print self.fileInfoDict
+        print self.fileInfoDict
         print "self.branchFilesInListDict" ,self.branchFilesInListDict
-      #  print tempTimeFileCompareDict
+        print tempTimeFileCompareDict
       
  #-----------------print out file info in textBrowser function start-------------------------------------------------------------------     
     def printOutFileInfo(self):
@@ -1387,8 +1458,9 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         
         except:
             pass
-            
-            
+
+                
+                
     def updateAssetBranchFileInfo(self,levelList):
         print "update assetBranchFileInfo.json"
         path = "C:/mayaProjs/3d_pipeline_test/global/"
@@ -1414,7 +1486,7 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # create New Branch on Top Level ----------------------------------------------------------------------------------------------------------------------
     def createNewBranchTopLevel(self):      
-        
+        print "......createNewBranchTopLevel function Start............."
       #  self.defineFontLevelTwo()
         #self.newBranch = self.lineEdit_branchName.text()
         self.getNewBranchName()
@@ -1447,9 +1519,12 @@ class mod_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             os.mkdir(createTopLayerFoder)
             
-        
+        self.buildExistFileInfoTree()         #reNew jsonFile and dirctionary
+        #self.getFilesInfoFormJson()           #reNew jsonFile and dirctionary
+                
        # print createTopLayerFoder
-        
+        print "......createNewBranchTopLevel function End............."
+    
     # create New Branch on Child Level ----------------------------------------------------------------------------------------------------------------------
     def createNewBranchChildLevel(self): 
      #   print"ggg"
